@@ -1,16 +1,14 @@
 // https://cors-anywhere.herokuapp.com/... serve per aggirare il problema del CORS
 let tipoRicerca = 2;
-const loadHome = document.getElementsByTagName('body');
-const api_key = "qbRvvFsyPJU6noQWFlz9rZiWzY5oOfgP";
-const api_url_getall = "https://cors-anywhere.herokuapp.com/https://adultvideosapi.com/api/videos/get-all";
-const api_url_onlyBest = "https://cors-anywhere.herokuapp.com/https://adultvideosapi.com/api/videos/get-only-best";
-const api_url_search = "https://cors-anywhere.herokuapp.com/https://adultvideosapi.com/api/videos/search";
+const api_url_getall = "https://www.eporner.com/api/v2/video/search/?lq=1&format=json&gay=0";
+const api_url_onlyBest = "https://www.eporner.com/api/v2/video/search/?page=1&order=top-weekly&lq=0&format=json";
+const api_url_search = "https://www.eporner.com/api/v2/video/search/?page=1&lq=0&format=json&query=";
+const api_url_search_section = "https://www.eporner.com/api/v2/video/search/?format=json&query=";
 const btn = document.getElementById('cerca');
 let intestazione = document.getElementById("intestazione");
 if (btn) {
     btn.addEventListener("click", Ricerca);
 }
-/* <!-- NON FUNZIONANTE CAUSA API DOWN --> */
 function SwitchInputSelect(num) {
     switch (num) {
         case 1:
@@ -18,6 +16,7 @@ function SwitchInputSelect(num) {
             document.getElementById("categoria").className = "form-select";
             document.getElementById("sezione").className = "form-select visually-hidden";
             document.getElementById("ricerca").className = "form-control me-2 visually-hidden";
+            document.getElementById("durata").className = "form-select visually-hidden";
             tipoRicerca = 1;
             break;
         case 2:
@@ -26,6 +25,7 @@ function SwitchInputSelect(num) {
             document.getElementById("ricerca").className = "form-control me-2";
             document.getElementById("sezione").className = "form-select visually-hidden";
             document.getElementById('ricerca').placeholder = "Cerca";
+            document.getElementById("durata").className = "form-select visually-hidden";
             document.getElementById('ricerca').type = 'text';
             tipoRicerca = 2;
             break;
@@ -34,10 +34,8 @@ function SwitchInputSelect(num) {
             //Filtro Durata
             document.getElementById("categoria").className = "form-select visually-hidden";
             document.getElementById("sezione").className = "form-select visually-hidden";
-            document.getElementById("ricerca").className = "form-control me-2";
-            document.getElementById('ricerca').placeholder = 'Durata in minuti';
-            document.getElementById('ricerca').type = 'number';
-            document.getElementById('ricerca').min = '1';
+            document.getElementById("ricerca").className = "form-control me-2 visually-hidden";
+            document.getElementById("durata").className = "form-select";
             tipoRicerca = 3;
             break;
         case 4:
@@ -45,6 +43,7 @@ function SwitchInputSelect(num) {
             document.getElementById("sezione").className = "form-select";
             document.getElementById("ricerca").className = "form-control me-2 visually-hidden";
             document.getElementById("categoria").className = "form-select visually-hidden";
+            document.getElementById("durata").className = "form-select visually-hidden";
             tipoRicerca = 4;
             break;
         default:
@@ -53,19 +52,18 @@ function SwitchInputSelect(num) {
 
     }
 }
-/* <!-- NON FUNZIONANTE CAUSA API DOWN --> */
+
 function Ricerca() {
     switch (tipoRicerca) {
         case 1:
-            intestazione.innerHTML = "";
             console.log("Ricerca per categoria");
             let categoria = document.getElementById("categoria").value;
+            intestazione.innerHTML = "";
             console.log(categoria);
-            fetch(api_url_getall + "?categories=" + categoria, {
+            fetch(api_url_search + categoria, {
                 "method": "GET",
                 "headers": {
-                    "Accept": "application/json",
-                    "X-API-Key": api_key
+                    "Accept": "application/json"
                 }
             })
                 .then(response => response.json())
@@ -76,12 +74,12 @@ function Ricerca() {
         case 2:
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
+            intestazione.innerHTML = "Ricerca per <span id='ricerca'>"+key_word+"</span>";
             console.log(key_word);
-            fetch(api_url_search + "?query=" + key_word, {
+            fetch(api_url_search + key_word, {
                 "method": "GET",
                 "headers": {
-                    "Accept": "application/json",
-                    "X-API-Key": api_key
+                    "Accept": "application/json"
                 }
             })
                 .then(response => response.json())
@@ -93,37 +91,46 @@ function Ricerca() {
             break;
         case 3:
             console.log("Ricerca per Durata");
-            let time = document.getElementById("ricerca").value * 60;
+            let time = document.getElementById("durata").value;
+            intestazione.innerHTML = "Ricerca per <span id='ricerca'>"+time+"</span>";
             console.log(time);
-            fetch(api_url_getall + "?max_duration=" + time, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=1&order="+time+"&lq=0&format=json", {
                 "method": "GET",
                 "headers": {
-                    "Accept": "application/json",
-                    "X-API-Key": api_key
+                    "Accept": "application/json"
                 }
             })
                 .then(response => response.json())
-                .then(result => { stampaCards(result) })
+                .then(result => {stampaCards(result)})
                 .catch(error => console.log('Error:', error));
-            document.getElementById("ricerca").value = "";
-
-
             break;
 
         case 4:
             console.log("Ricerca per Sezione");
             let sezione = document.getElementById("sezione").value;
             console.log(sezione);
-            fetch(api_url_getall + "?sections=" + sezione, {
-                "method": "GET",
-                "headers": {
-                    "Accept": "application/json",
-                    "X-API-Key": api_key
-                }
-            })
-                .then(response => response.json())
-                .then(result => { stampaCards(result) })
-                .catch(error => console.log('Error:', error));
+            if (sezione == "etero") {
+                fetch(api_url_getall, {
+                    "method": "GET",
+                    "headers": {
+                        "Accept": "application/json",
+                    }
+                })
+                    .then(response => response.json())
+                    .then(result => { stampaCards(result) })
+                    .catch(error => console.log('Error:', error));
+
+            } else {
+                fetch(api_url_search_section + sezione, {
+                    "method": "GET",
+                    "headers": {
+                        "Accept": "application/json",
+                    }
+                })
+                    .then(response => response.json())
+                    .then(result => { stampaCards(result) })
+                    .catch(error => console.log('Error:', error));
+            }
             break;
         default:
             tipoRicerca = 3;
@@ -161,18 +168,16 @@ function hideVideo(card) {
 
 function stampaCards(result) {
     console.log(result);
-    let arrayVideo = result.data;
+    let arrayVideo = result.videos;
     let cardsVideo = document.getElementById('video');
     cardsVideo.innerHTML = "";
     for (let i = 0; i < 18; i++) {
         cardsVideo.innerHTML += `<div class="col">
-        <div class="card" onclick="window.open('${arrayVideo[i].embed_url}')" onmouseover="showVideo(this)"
-        onmouseout="hideVideo(this)">
-          <img src='${arrayVideo[i].default_thumb_url}' class="card-img-top" window.open('${arrayVideo[i].embed_url}, incognito: true')">
-          <video src='${arrayVideo[i].preview_url}' class="card-img-top visually-hidden"></video>
+        <div class="card" onclick="window.open('${arrayVideo[i].embed}')">
+          <img src='${arrayVideo[i].default_thumb.src}' class="card-img-top" window.open('${arrayVideo[i].embed}, incognito: true')">
           <div class="card-description">
             <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 10)}</h2>
-            <p class="card-text">Views: ${arrayVideo[i].views_count}</p>
+            <p class="card-text">Views: ${arrayVideo[i].views}</p>
           </div>
         </div>
       </div>`;
@@ -181,11 +186,10 @@ function stampaCards(result) {
 
 function CreaHome() {
     console.log("Crea Home");
-    fetch(api_url_getall + "?order=newest", {
+    fetch(api_url_getall, {
         "method": "GET",
         "headers": {
-            "Accept": "application/json",
-            "X-API-Key": api_key
+            "Accept": "application/json"
         }
     })
         .then(response => response.json())
@@ -198,8 +202,7 @@ function CreaTrending() {
     fetch(api_url_onlyBest, {
         "method": "GET",
         "headers": {
-            "Accept": "application/json",
-            "X-API-Key": api_key
+            "Accept": "application/json"
         }
     })
         .then(response => response.json())

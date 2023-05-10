@@ -7,6 +7,10 @@
   font-display: swap;
 }
 
+#ricerca{
+  color: rgb(241, 123, 54);
+}
+
 body {
   background-color: rgb(33, 37, 41);
   font-family: Generale;
@@ -23,6 +27,10 @@ option {
   color: white;
   background-color: rgb(41, 48, 54);
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+}
+
+option:hover{
+  cursor: pointer;
 }
 
 #categoria {
