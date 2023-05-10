@@ -37,3 +37,5 @@ function stampaCards(result) {
       
   }
 }
+
+CercaPornstar();

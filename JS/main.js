@@ -1,10 +1,14 @@
-// https://cors-anywhere.herokuapp.com/... serve per aggirare il problema del CORS
+
 let tipoRicerca = 2;
 const api_url_getall = "https://www.eporner.com/api/v2/video/search/?lq=1&format=json&gay=0";
 const api_url_onlyBest = "https://www.eporner.com/api/v2/video/search/?page=1&order=top-weekly&lq=0&format=json";
 const api_url_search = "https://www.eporner.com/api/v2/video/search/?page=1&lq=0&format=json&query=";
 const api_url_search_section = "https://www.eporner.com/api/v2/video/search/?format=json&query=";
 const btn = document.getElementById('cerca');
+const selectCategoria = document.getElementById('categoria');
+const search = document.getElementById('ricerca');
+const selectDurata = document.getElementById('durata');
+const selectSezione = document.getElementById('sezione');
 let intestazione = document.getElementById("intestazione");
 if (btn) {
     btn.addEventListener("click", Ricerca);
@@ -13,37 +17,36 @@ function SwitchInputSelect(num) {
     switch (num) {
         case 1:
             //Filtro Categorie
-            document.getElementById("categoria").className = "form-select";
-            document.getElementById("sezione").className = "form-select visually-hidden";
-            document.getElementById("ricerca").className = "form-control me-2 visually-hidden";
-            document.getElementById("durata").className = "form-select visually-hidden";
+            selectCategoria.className = "form-select";
+            selectSezione.className = "form-select visually-hidden";
+            search.className = "form-control me-2 visually-hidden";
+            selectDurata.className = "form-select visually-hidden";
             tipoRicerca = 1;
             break;
         case 2:
             //Filtro Parola Chiave (Default)
-            document.getElementById("categoria").className = "form-select visually-hidden";
-            document.getElementById("ricerca").className = "form-control me-2";
-            document.getElementById("sezione").className = "form-select visually-hidden";
-            document.getElementById('ricerca').placeholder = "Cerca";
-            document.getElementById("durata").className = "form-select visually-hidden";
-            document.getElementById('ricerca').type = 'text';
+            selectCategoria.className = "form-select visually-hidden";
+            search.className = "form-control me-2";
+            selectSezione.className = "form-select visually-hidden";
+            search.placeholder = "Cerca";
+            selectDurata = "form-select visually-hidden";
             tipoRicerca = 2;
             break;
 
         case 3:
             //Filtro Durata
-            document.getElementById("categoria").className = "form-select visually-hidden";
-            document.getElementById("sezione").className = "form-select visually-hidden";
-            document.getElementById("ricerca").className = "form-control me-2 visually-hidden";
-            document.getElementById("durata").className = "form-select";
+            selectCategoria.className = "form-select visually-hidden";
+            selectSezione.className = "form-select visually-hidden";
+            search.className = "form-control me-2 visually-hidden";
+            selectDurata.className = "form-select";
             tipoRicerca = 3;
             break;
         case 4:
             //Filtro Sezione
-            document.getElementById("sezione").className = "form-select";
-            document.getElementById("ricerca").className = "form-control me-2 visually-hidden";
-            document.getElementById("categoria").className = "form-select visually-hidden";
-            document.getElementById("durata").className = "form-select visually-hidden";
+            selectSezione.className = "form-select";
+            search.className = "form-control me-2 visually-hidden";
+            selectCategoria.className = "form-select visually-hidden";
+            selectDurata.className = "form-select visually-hidden";
             tipoRicerca = 4;
             break;
         default:
@@ -92,7 +95,12 @@ function Ricerca() {
         case 3:
             console.log("Ricerca per Durata");
             let time = document.getElementById("durata").value;
-            intestazione.innerHTML = "Ricerca per <span id='ricerca'>"+time+"</span>";
+            if (time=="longest") {
+                intestazione.innerHTML = "Ricerca per <span id='ricerca'>Video lunghi</span>";
+            }else{
+                intestazione.innerHTML = "Ricerca per <span id='ricerca'>Video Corti</span>";
+            }
+            
             console.log(time);
             fetch("https://www.eporner.com/api/v2/video/search/?page=1&order="+time+"&lq=0&format=json", {
                 "method": "GET",

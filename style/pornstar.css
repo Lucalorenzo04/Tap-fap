@@ -45,8 +45,9 @@ option {
 
 .row{
   position: absolute;
-  top: 25%;
-  left: 5%;
+  width: 98%;
+  margin-left: 2.5%;
+  margin-bottom: 2.5%;
 }
 
 h1 {
@@ -90,11 +91,6 @@ body::-webkit-scrollbar-thumb {
   color: rgb(255, 255, 255);
   text-align: center;
   width: 75%;
-}
-
-.container-fluid {
-  width: 98% !important;
-  
 }
 
 .card-body {
