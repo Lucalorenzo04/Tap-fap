@@ -1,0 +1,127 @@
+@font-face {
+  /* font */
+  font-family: Generale;
+  src: url("./../fonts/Prototype.ttf");
+  /* file*/
+
+  font-display: swap;
+}
+
+body {
+  background-color: rgb(33, 37, 41);
+  font-family: Generale;
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+#logo {
+  color: orange;
+}
+
+option {
+  color: white;
+  background-color: rgb(41, 48, 54);
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+}
+
+#categoria {
+  color: rgb(238, 115, 0);
+}
+
+#titolo {
+  color: white;
+  font-size: 150%;
+  margin-left: 0.5%;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+  margin-top: 1%;
+  margin-bottom: 2.5%;
+}
+
+#form_ricerca {
+  margin-right: 0.5%;
+}
+
+div.card:hover {
+  background-color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+body::-webkit-scrollbar {
+  width: 1em;
+}
+
+.container-fluid {
+  width: 98% !important;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+#icone {
+  width: 3%;
+  margin-left: 0.3%;
+  margin-right: 0.1%;
+}
+
+select {
+  margin-right: 0.5rem;
+}
+
+.card {
+  height: 100%;
+  text-shadow: -3px 1px black;
+  background-size: cover !important;
+  color: white;
+  border-radius: 5px;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+  align-items: center;
+}
+
+.card-description {
+  position: absolute;
+  bottom: 5%;
+  text-align: center;
+  align-items: center;
+}
+.card-description h2 {
+  font-size: 22px;
+  text-align: center;
+  align-items: center;
+}
+.card-description p {
+  font-size: 15px;
+  text-align: center;
+  align-items: center;
+}
+.features img {
+  width: 100px;
+}
+
+#star {
+  width: 2%;
+  margin-right: 0.5%;
+}
+
+@media screen and (max-width: 1000px) {
+  .card-description h2 {
+    font-size: 12px;
+    text-align: center;
+    align-items: center;
+  }
+  .card-description p {
+    font-size: 8px;
+    text-align: center;
+    align-items: center;
+  }
+}
