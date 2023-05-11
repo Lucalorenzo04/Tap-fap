@@ -77,7 +77,7 @@ function Ricerca() {
         case 2:
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
-            intestazione.innerHTML = "Ricerca per <span id='ricerca'>"+key_word+"</span>";
+            intestazione.innerHTML = "Ricerca per <span id='ricerca'>" + key_word + "</span>";
             console.log(key_word);
             fetch(api_url_search + key_word, {
                 "method": "GET",
@@ -95,21 +95,21 @@ function Ricerca() {
         case 3:
             console.log("Ricerca per Durata");
             let time = document.getElementById("durata").value;
-            if (time=="longest") {
+            if (time == "longest") {
                 intestazione.innerHTML = "Ricerca per <span id='ricerca'>Video lunghi</span>";
-            }else{
+            } else {
                 intestazione.innerHTML = "Ricerca per <span id='ricerca'>Video Corti</span>";
             }
-            
+
             console.log(time);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=1&order="+time+"&lq=0&format=json", {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=1&order=" + time + "&lq=0&format=json", {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
                 }
             })
                 .then(response => response.json())
-                .then(result => {stampaCards(result)})
+                .then(result => { stampaCards(result) })
                 .catch(error => console.log('Error:', error));
             break;
 
@@ -147,33 +147,6 @@ function Ricerca() {
     }
 }
 
-function showVideo(card) {
-    const img = card.querySelector('img');
-    const video = card.querySelector('video');
-    const src = video.getAttribute('src');
-    console.log(src);
-    if (src != "") {
-        img.classList.add('visually-hidden');
-        video.classList.remove('visually-hidden');
-        video.play();
-        video.loop = true;
-    }
-
-    return;
-}
-
-function hideVideo(card) {
-    const img = card.querySelector('img');
-    const video = card.querySelector('video');
-    const src = img.getAttribute('src');
-    if (src != "") {
-        img.classList.remove('visually-hidden');
-        video.classList.add('visually-hidden');
-        video.pause();
-    }
-    return;
-}
-
 function stampaCards(result) {
     console.log(result);
     let arrayVideo = result.videos;
@@ -181,8 +154,8 @@ function stampaCards(result) {
     cardsVideo.innerHTML = "";
     for (let i = 0; i < 18; i++) {
         cardsVideo.innerHTML += `<div class="col">
-        <div class="card" onclick="window.open('${arrayVideo[i].embed}')">
-          <img src='${arrayVideo[i].default_thumb.src}' class="card-img-top" window.open('${arrayVideo[i].embed}, incognito: true')">
+        <div class="card" onclick="window.open('${arrayVideo[i].embed}')" onmouseover="showPreview(this)">
+          <img src='${arrayVideo[i].thumbs[0].src}' class="card-img-top" window.open('${arrayVideo[i].embed}')">
           <div class="card-description">
             <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 10)}</h2>
             <p class="card-text">Views: ${arrayVideo[i].views}</p>

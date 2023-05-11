@@ -55,7 +55,6 @@ h1 {
 }
 
 div.card:hover {
-  background-color: rgb(0, 0, 0);
   cursor: pointer;
 }
 
