@@ -107,7 +107,6 @@ select {
   font-size: 22px;
   text-align: center;
   align-items: center;
-  color: #e0dfdc;
   color: #FFFFFF;
   text-shadow: 3px 5px 2px #474747;
 }
@@ -115,6 +114,8 @@ select {
   font-size: 20px;
   text-align: center;
   align-items: center;
+  color: #FFFFFF;
+  text-shadow: 3px 5px 2px #474747;
 }
 .features img {
   width: 100px;
