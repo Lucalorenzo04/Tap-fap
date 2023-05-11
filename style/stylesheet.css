@@ -87,8 +87,6 @@ select {
 
 .card {
   height: 100%;
- /*  text-shadow: -3px 1px black; */
- 
   text-shadow: 0 0 2px #000000;
   background-size: cover !important;
   color: white;
@@ -123,6 +121,8 @@ select {
 
 .row {
   margin-bottom: 1%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #star {
@@ -130,7 +130,7 @@ select {
   margin-right: 0.5%;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1266px) {
   .card-description h2 {
     font-size: 15px;
     text-align: center;
@@ -141,4 +141,32 @@ select {
     text-align: center;
     align-items: center;
   }
+
+  .row {
+    width: 100% ;
+    margin-bottom: 1%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
+
+@media screen and (max-width: 725px) {
+  .card-description h2 {
+    font-size: 10px;
+    text-align: center;
+    align-items: center;
+  }
+  .card-description p {
+    font-size: 8px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .row {
+    width: 100% ;
+    margin-bottom: 1%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
