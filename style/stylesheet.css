@@ -87,7 +87,9 @@ select {
 
 .card {
   height: 100%;
-  text-shadow: -3px 1px black;
+ /*  text-shadow: -3px 1px black; */
+ 
+  text-shadow: 0 0 2px #000000;
   background-size: cover !important;
   color: white;
   border-radius: 5px;
@@ -105,9 +107,12 @@ select {
   font-size: 22px;
   text-align: center;
   align-items: center;
+  color: #e0dfdc;
+  color: #FFFFFF;
+  text-shadow: 3px 5px 2px #474747;
 }
 .card-description p {
-  font-size: 15px;
+  font-size: 20px;
   text-align: center;
   align-items: center;
 }
@@ -126,12 +131,12 @@ select {
 
 @media screen and (max-width: 1000px) {
   .card-description h2 {
-    font-size: 12px;
+    font-size: 15px;
     text-align: center;
     align-items: center;
   }
   .card-description p {
-    font-size: 8px;
+    font-size: 10px;
     text-align: center;
     align-items: center;
   }

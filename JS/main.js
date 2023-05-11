@@ -157,7 +157,7 @@ function stampaCards(result) {
         <div class="card" onclick="window.open('${arrayVideo[i].embed}')" onmouseover="showPreview(this)">
           <img src='${arrayVideo[i].default_thumb.src}' class="card-img-top" window.open('${arrayVideo[i].embed}')">
           <div class="card-description">
-            <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 10)}</h2>
+            <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 15)}</h2>
             <p class="card-text">Views: ${arrayVideo[i].views}</p>
           </div>
         </div>
