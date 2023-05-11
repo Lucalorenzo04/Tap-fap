@@ -115,6 +115,10 @@ select {
   width: 100px;
 }
 
+.row {
+  margin-bottom: 1%;
+}
+
 #star {
   width: 2%;
   margin-right: 0.5%;

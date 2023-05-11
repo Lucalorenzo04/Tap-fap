@@ -152,10 +152,10 @@ function stampaCards(result) {
     let arrayVideo = result.videos;
     let cardsVideo = document.getElementById('video');
     cardsVideo.innerHTML = "";
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < arrayVideo.length; i++) {
         cardsVideo.innerHTML += `<div class="col">
         <div class="card" onclick="window.open('${arrayVideo[i].embed}')" onmouseover="showPreview(this)">
-          <img src='${arrayVideo[i].thumbs[0].src}' class="card-img-top" window.open('${arrayVideo[i].embed}')">
+          <img src='${arrayVideo[i].default_thumb.src}' class="card-img-top" window.open('${arrayVideo[i].embed}')">
           <div class="card-description">
             <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 10)}</h2>
             <p class="card-text">Views: ${arrayVideo[i].views}</p>
@@ -167,7 +167,7 @@ function stampaCards(result) {
 
 function CreaHome() {
     console.log("Crea Home");
-    fetch(api_url_getall, {
+    fetch(api_url_search, {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
