@@ -42,7 +42,10 @@ option {
   font-size: 150%;
   margin-left: 0.5%;
 }
-
+#views{
+  margin-right: 100%;
+  margin-left: 10%;
+}
 .row{
   position: absolute;
   width: 98%;

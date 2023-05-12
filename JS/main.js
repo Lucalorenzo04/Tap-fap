@@ -1,6 +1,6 @@
 
 let tipoRicerca = 2;
-const api_url_getall = "https://www.eporner.com/api/v2/video/search/?lq=1&format=json&gay=0";
+const api_url_getall = "https://www.eporner.com/api/v2/video/search/?per_page=50&order=latest&lq=0&format=json&gay=0";
 const api_url_onlyBest = "https://www.eporner.com/api/v2/video/search/?page=1&order=top-weekly&lq=1&format=json";
 const api_url_search = "https://www.eporner.com/api/v2/video/search/?page=1&lq=1&format=json&query=";
 const api_url_search_section = "https://www.eporner.com/api/v2/video/search/?format=json&query=";
@@ -154,12 +154,14 @@ function stampaCards(result) {
     cardsVideo.innerHTML = "";
     for (let i = 0; i < arrayVideo.length; i++) {
         cardsVideo.innerHTML += `<div class="col">
-        <div class="card" onclick="window.open('${arrayVideo[i].embed}')" onmouseover="showPreview(this)">
+        <div class="card" onclick="window.open('${arrayVideo[i].embed}')">
           <img src='${arrayVideo[i].default_thumb.src}' class="card-img-top" window.open('${arrayVideo[i].embed}')">
           <div class="card-description">
-            <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 10)}</h2>
-            <p class="card-text">Views: ${arrayVideo[i].views}</p>
+            <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 75)}</h2>
+            <p><span class="card-text" id="n-views"><img src='././img/eye.png' id="views"> ${arrayVideo[i].views}</span>
+            <span class="card-text" id="time"><img src='././img/clock-circular-outline.png' id="clock">  ${arrayVideo[i].length_min}</span></p>
           </div>
+          
         </div>
       </div>`;
     }
@@ -192,7 +194,7 @@ function CreaTrending() {
 }
 
 function stampaTitolo(testo, numeroParole) {
-    let parole = testo.split(' ');
-    let paroleDaStampare = parole.slice(0, numeroParole).join(' ');
+    let parole = testo.split('');
+    let paroleDaStampare = parole.slice(0, numeroParole).join('');
     return paroleDaStampare;
 }
