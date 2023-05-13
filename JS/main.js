@@ -17,37 +17,38 @@ function SwitchInputSelect(num) {
     switch (num) {
         case 1:
             //Filtro Categorie
+            tipoRicerca = 1;
             selectCategoria.className = "form-select";
             selectSezione.className = "form-select visually-hidden";
             search.className = "form-control me-2 visually-hidden";
             selectDurata.className = "form-select visually-hidden";
-            tipoRicerca = 1;
             break;
         case 2:
             //Filtro Parola Chiave (Default)
+            tipoRicerca = 2;
             selectCategoria.className = "form-select visually-hidden";
             search.className = "form-control me-2";
             selectSezione.className = "form-select visually-hidden";
             search.placeholder = "Cerca";
             selectDurata = "form-select visually-hidden";
-            tipoRicerca = 2;
+            
             break;
 
         case 3:
             //Filtro Durata
+            tipoRicerca = 3;
             selectCategoria.className = "form-select visually-hidden";
             selectSezione.className = "form-select visually-hidden";
             search.className = "form-control me-2 visually-hidden";
             selectDurata.className = "form-select";
-            tipoRicerca = 3;
             break;
         case 4:
             //Filtro Sezione
+            tipoRicerca = 4;
             selectSezione.className = "form-select";
             search.className = "form-control me-2 visually-hidden";
             selectCategoria.className = "form-select visually-hidden";
             selectDurata.className = "form-select visually-hidden";
-            tipoRicerca = 4;
             break;
         default:
             tipoRicerca = 3;
@@ -75,6 +76,7 @@ function Ricerca() {
 
             break;
         case 2:
+            tipoRicerca = 3;
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
             intestazione.innerHTML = "Ricerca per <span id='ricerca'>" + key_word + "</span>";
@@ -141,7 +143,7 @@ function Ricerca() {
             }
             break;
         default:
-            tipoRicerca = 3;
+            tipoRicerca = 2;
             document.getElementById("ricerca").value = "";
             break;
     }
