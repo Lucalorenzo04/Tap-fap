@@ -118,6 +118,7 @@ function Ricerca() {
 
         case 4:
             console.log("Ricerca per Sezione");
+            intestazione.innerHTML = "";
             let sezione = document.getElementById("sezione").value;
             console.log(sezione);
             if (sezione == "etero") {
@@ -201,3 +202,31 @@ function stampaTitolo(testo, numeroParole) {
     let paroleDaStampare = parole.slice(0, numeroParole).join('');
     return paroleDaStampare;
 }
+
+categoria.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      btn.click();
+    }
+  });
+
+  search.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      btn.click();
+    }
+  });
+
+  selectDurata.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      btn.click();
+    }
+  });
+
+  selectSezione.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      btn.click();
+    }
+  });
