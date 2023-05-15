@@ -1,7 +1,7 @@
 
 let tipoRicerca = 2;
 const api_url_getall = "https://www.eporner.com/api/v2/video/search/?per_page=50&order=latest&lq=0&format=json&gay=0&per_page=60";
-const api_url_onlyBest = "https://www.eporner.com/api/v2/video/search/?page=1&order=top-weekly&lq=1&format=json&per_page=60";
+const api_url_onlyBest = "https://www.eporner.com/api/v2/video/search/?page=1&order=top-weekly&lq=0&format=json&per_page=60";
 const api_url_search = "https://www.eporner.com/api/v2/video/search/?page=1&lq=0&format=json&per_page=60&query=";
 const api_url_search_section = "https://www.eporner.com/api/v2/video/search/?per_page=60&format=json&page=1&query=";
 const btn = document.getElementById('cerca');
