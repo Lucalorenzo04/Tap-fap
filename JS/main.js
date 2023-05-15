@@ -52,7 +52,7 @@ function SwitchInputSelect(num) {
             selectDurata.className = "form-select visually-hidden";
             break;
         default:
-            tipoRicerca = 3;
+            tipoRicerca = 2;
             break;
 
     }
@@ -77,10 +77,11 @@ function Ricerca() {
 
             break;
         case 2:
-            tipoRicerca = 3;
+            tipoRicerca = 2;
+            intestazione.innerHTML = "";
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
-            intestazione.innerHTML = "Ricerca per <span id='ricerca'>" + key_word + "</span>";
+            intestazione.innerHTML = "Ricerca per <span id='ricercaSpan'>" + key_word + "</span>";
             console.log(key_word);
             fetch(api_url_search + key_word, {
                 "method": "GET",
@@ -97,11 +98,12 @@ function Ricerca() {
             break;
         case 3:
             console.log("Ricerca per Durata");
+            intestazione.innerHTML = "";
             let time = document.getElementById("durata").value;
             if (time == "longest") {
-                intestazione.innerHTML = "Ricerca per <span id='ricerca'>Video lunghi</span>";
+                intestazione.innerHTML = "Ricerca per <span id='ricercaSpan'>Video lunghi</span>";
             } else {
-                intestazione.innerHTML = "Ricerca per <span id='ricerca'>Video Corti</span>";
+                intestazione.innerHTML = "Ricerca per <span id='ricercaSpan'>Video Corti</span>";
             }
 
             console.log(time);
