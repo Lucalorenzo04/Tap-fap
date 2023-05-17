@@ -78,7 +78,7 @@ function Ricerca() {
             let categoria = document.getElementById("categoria").value;
             intestazione.innerHTML = "";
             console.log(categoria);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=36&query=" + categoria, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=30&query=" + categoria, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -87,6 +87,7 @@ function Ricerca() {
                 .then(response => response.json())
                 .then(result => { stampaCards(result) })
                 .catch(error => console.log('Error:', error));
+            intestazione.innerHTML = `Pagina " + <span id="categoria">${pagina}</span>`;
 
 
             break;
@@ -97,7 +98,7 @@ function Ricerca() {
             let key_word = document.getElementById("ricerca").value;
             intestazione.innerHTML = "Ricerca per <span id='ricercaSpan'>" + key_word + "</span>";
             console.log(key_word);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=36&query=" + key_word, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=30&query=" + key_word, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -118,7 +119,7 @@ function Ricerca() {
             }
 
             console.log(time);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json", {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json&per_page=30", {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -135,7 +136,7 @@ function Ricerca() {
             let sezione = document.getElementById("sezione").value;
             console.log(sezione);
             if (sezione == "etero") {
-                fetch("https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=36&page=" + pagina, {
+                fetch("https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=30&page=" + pagina, {
                     "method": "GET",
                     "headers": {
                         "Accept": "application/json",
@@ -146,7 +147,7 @@ function Ricerca() {
                     .catch(error => console.log('Error:', error));
 
             } else {
-                fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=36&format=json&query=" + sezione, {
+                fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=30&format=json&query=" + sezione, {
                     "method": "GET",
                     "headers": {
                         "Accept": "application/json",
@@ -192,7 +193,7 @@ function stampaCards(result) {
 function CreaHome() {
     console.log("Crea Home");
     tipoRicerca = 5;
-    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=42", {
+    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=30", {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
@@ -228,68 +229,68 @@ function next() {
     window.scrollTo(top);
     switch (tipoRicerca) {
         case 1:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina >= 1 && pagina < 100) {
                 pagina++;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
 
         case 2:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina >= 1 && pagina < 100) {
                 pagina++;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
         case 3:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina >= 1 && pagina < 100) {
                 pagina++;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
         case 4:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina >= 1 && pagina < 100) {
                 pagina++;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
 
-            case 5:
-                if (pagina > 0 && pagina < 100) {
-                    pagina++;
-                } else {
-                    pagina = 1;
-                }
-                console.log(pagina);
-                intestazione.innerHTML = "Pagina " + pagina;
-                CreaHome();
+        case 5:
+            if (pagina >= 1 && pagina < 100) {
+                pagina++;
+            } else {
+                pagina = 1;
+            }
+            console.log(pagina);
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
+            CreaHome();
             break;
 
         case 6:
 
-        if (pagina > 0 && pagina < 100) {
-            pagina++;
-        } else {
-            pagina = 1;
-        }
-        console.log(pagina);
-        intestazione.innerHTML = "Pagina " + pagina;
-        CreaTrending();
+            if (pagina >= 1 && pagina < 100) {
+                pagina++;
+            } else {
+                pagina = 1;
+            }
+            console.log(pagina);
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
+            CreaTrending();
 
         default:
             break;
@@ -301,66 +302,66 @@ function prev() {
     window.scrollTo(top);
     switch (tipoRicerca) {
         case 1:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina > 1 && pagina < 100) {
                 pagina--;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
 
         case 2:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina > 1 && pagina < 100) {
                 pagina--;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
         case 3:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina > 1 && pagina < 100) {
                 pagina--;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
         case 4:
-            if (pagina > 0 && pagina < 100) {
+            if (pagina > 1 && pagina < 100) {
                 pagina--;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
 
-            case 5:
-                if (pagina > 0 && pagina < 100) {
-                    pagina--;
-                } else {
-                    pagina = 1;
-                }
-                console.log(pagina);
-                intestazione.innerHTML = "Pagina " + pagina;
-                CreaHome();
-            break;
-
-        case 6:
-            if (pagina > 0 && pagina < 100) {
+        case 5:
+            if (pagina > 1 && pagina < 100) {
                 pagina--;
             } else {
                 pagina = 1;
             }
             console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
+            CreaHome();
+            break;
+
+        case 6:
+            if (pagina > 1 && pagina < 100) {
+                pagina--;
+            } else {
+                pagina = 1;
+            }
+            console.log(pagina);
+            intestazione.innerHTML = `Pagina " + <span id="categoria">${pagina}</span>`;
             CreaTrending();
             break;
 
