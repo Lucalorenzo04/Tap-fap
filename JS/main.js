@@ -87,9 +87,7 @@ function Ricerca() {
                 .then(response => response.json())
                 .then(result => { stampaCards(result) })
                 .catch(error => console.log('Error:', error));
-            intestazione.innerHTML = `Pagina " + <span id="categoria">${pagina}</span>`;
-
-
+            intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             break;
         case 2:
             tipoRicerca = 2;
@@ -168,6 +166,7 @@ function Ricerca() {
 function stampaCards(result) {
     console.log(result);
     let arrayVideo = result.videos;
+    let arrayVideoThumbs = arrayVideo[0].thumbs[0].src;
     let cardsVideo = document.getElementById('video');
     if (arrayVideo.length == 0) {
         intestazione.innerHTML = "Nessun risultato";
@@ -175,15 +174,15 @@ function stampaCards(result) {
     } else {
         cardsVideo.innerHTML = "";
         for (let i = 0; i < arrayVideo.length; i++) {
+            let default_thumb=arrayVideo[i].default_thumb.src;
             cardsVideo.innerHTML += `<div class="col">
-        <div class="card" onclick="window.open('${arrayVideo[i].embed}')">
+        <div class="card" onclick="window.open('${arrayVideo[i].embed}')" onmouseover="changeImageOnHover(this,${arrayVideoThumbs})" onmouseleave="changeImageOnHoverOut(this, ${default_thumb});">
           <img src='${arrayVideo[i].default_thumb.src}' class="card-img-top" window.open('${arrayVideo[i].embed}')">
           <div class="card-description">
-            <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 75)}</h2>
+            <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 60)}</h2>
             <p><span class="card-text" id="n-views"><img src='././img/eye.png' id="views"> ${arrayVideo[i].views}</span>
             <span class="card-text" id="time"><img src='././img/clock-circular-outline.png' id="clock">  ${arrayVideo[i].length_min}</span></p>
           </div>
-          
         </div>
       </div>`;
         }
@@ -238,7 +237,6 @@ function next() {
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
-
         case 2:
             if (pagina >= 1 && pagina < 100) {
                 pagina++;
@@ -269,7 +267,6 @@ function next() {
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
-
         case 5:
             if (pagina >= 1 && pagina < 100) {
                 pagina++;
@@ -280,7 +277,6 @@ function next() {
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             CreaHome();
             break;
-
         case 6:
 
             if (pagina >= 1 && pagina < 100) {
@@ -291,7 +287,6 @@ function next() {
             console.log(pagina);
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             CreaTrending();
-
         default:
             break;
     }
@@ -311,7 +306,6 @@ function prev() {
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
-
         case 2:
             if (pagina > 1 && pagina < 100) {
                 pagina--;
@@ -342,7 +336,6 @@ function prev() {
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             Ricerca();
             break;
-
         case 5:
             if (pagina > 1 && pagina < 100) {
                 pagina--;
@@ -353,7 +346,6 @@ function prev() {
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             CreaHome();
             break;
-
         case 6:
             if (pagina > 1 && pagina < 100) {
                 pagina--;
@@ -364,7 +356,6 @@ function prev() {
             intestazione.innerHTML = `Pagina " + <span id="categoria">${pagina}</span>`;
             CreaTrending();
             break;
-
         default:
             break;
     }
@@ -398,3 +389,12 @@ selectSezione.addEventListener("keypress", function (event) {
     }
 });
 
+function changeImageOnHover(cardElement, imageArray) {
+    var currentIndex = 0;
+    currentIndex = (currentIndex + 1) % imageArray.length;
+    cardElement.querySelector('img').src = imageArray[currentIndex].src;
+}
+
+function changeImageOnHoverOut(cardElement, thumb) {
+cardElement.querySelector('img').src = thumb;
+}
