@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top" data-bs-theme="dark">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark sticky-top" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" id="titolo" href="./index.html">Tap &
         <span id="logo">Fap</span></a>
@@ -55,7 +55,7 @@
         </ul>
         <form class="d-flex" role="search" id="form_ricerca">
           <input class="form-control me-2" type="text" placeholder="Cerca" aria-label="Search" id="ricerca"
-            name="ricerca">
+            name="ricerca" onfocus="SwitchInputSelect(2)">
           <select class="form-select visually-hidden me-2" aria-label="Categorie" id="categoria">
             <option selected id="decorazione" value="0">Seleziona categoria</option>
             <option value="Amateur">Amatoriale</option>
@@ -106,13 +106,25 @@
     </div>
   </div>
   <br>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+</body>
+
+<footer>
+  <nav aria-label="Page navigationfixed-bottom" id="pagination" data-bs-theme="dark">
+    <ul class="pagination">
+        <button type="button" class="btn btn-outline-warning" id="previous" ><a href="#top"></a>&laquo;</button>
+        <button type="button" class="btn btn-outline-warning" id="next" ><a href="#top"></a>&raquo;</button>
+    </ul>
+  </nav>
+  <br>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
   <script src="./JS/main.js"></script>
-  <script>window.onload = CreaHome()</script>
+  <script>
+  window.onload = CreaHome()</script>
   <script defer src="/_vercel/insights/script.js"></script>
-</body>
 
 
 </html>
