@@ -201,7 +201,7 @@ function CreaHome() {
         .then(response => response.json())
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
-    window.scrollTo(0, 0);
+    window.scrollTo(top);
 }
 
 function CreaTrending() {
@@ -225,7 +225,7 @@ function stampaTitolo(testo, numeroParole) {
 }
 
 function next() {
-    window.scrollTo(0, 0);
+    window.scrollTo(top);
     switch (tipoRicerca) {
         case 1:
             if (pagina > 0 && pagina < 100) {
@@ -298,7 +298,7 @@ function next() {
 }
 
 function prev() {
-    window.scrollTo(0, 0);
+    window.scrollTo(top);
     switch (tipoRicerca) {
         case 1:
             if (pagina > 0 && pagina < 100) {
