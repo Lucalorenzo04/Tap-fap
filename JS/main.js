@@ -168,106 +168,158 @@ function stampaCards(result) {
     console.log(result);
     let arrayVideo = result.videos;
     let cardsVideo = document.getElementById('video');
+
+    cardsVideo.innerHTML = "";
+
     if (arrayVideo.length == 0) {
         intestazione.innerHTML = "Nessun risultato";
-        cardsVideo.innerHTML = "";
-    } else {
-        cardsVideo.innerHTML = "";
-        for (let i = 0; i < arrayVideo.length; i++) {
-            cardsVideo.innerHTML += `<div class="col">
-        <div class="card" onclick="window.open('${arrayVideo[i].embed}')">
-          <img src='${arrayVideo[i].default_thumb.src}' class="card-img-top" window.open('${arrayVideo[i].embed}')">
-          <div class="card-description">
-            <h2 class="card-title">${stampaTitolo(arrayVideo[i].title, 75)}</h2>
-            <p><span class="card-text" id="n-views"><img src='././img/eye.png' id="views"> ${arrayVideo[i].views}</span>
-            <span class="card-text" id="time"><img src='././img/clock-circular-outline.png' id="clock">  ${arrayVideo[i].length_min}</span></p>
-          </div>
-          
-        </div>
-      </div>`;
-        }
+        return;
     }
+
+    arrayVideo.forEach((video, index)=> {
+        const wrapper = document.createElement(`div`);
+        wrapper.className = `col`;
+
+        const card = document.createElement(`div`);
+        card.className = `card`;
+        card.addEventListener(`click`, (ev) => window.open(video.embed));
+
+        const cardImg = document.createElement(`img`);
+        cardImg.src = video.default_thumb.src;
+        cardImg.className = `card-img-top`;
+
+        const cardDescription = document.createElement(`div`);
+        cardDescription.className = `card-description`;
+
+        const h2 = document.createElement(`h2`);
+        h2.className = `card-title`;
+        h2.textContent = stampaTitolo(arrayVideo[index].title, 75);
+
+        const p = document.createElement(`p`);
+        p.className = `card-text`;
+
+        const spanViews = document.createElement(`span`);
+        spanViews.className = `card-text`;
+        spanViews.id = `n-views`;
+
+        const imgViews = document.createElement(`img`);
+        imgViews.src = `/img/eye.png`;
+        imgViews.id = `views`;
+
+        const spanTime = document.createElement(`span`);
+        spanTime.className = `card-text`;
+        spanTime.id = `time`;
+
+        const imgTime = document.createElement(`img`);
+        imgTime.src = `/img/clock-circular-outline.png`;
+        imgTime.id = `clock`;
+
+        const spanViewsText = document.createElement(`span`);
+        spanViewsText.textContent = video.views;
+
+        const spanTimeText = document.createElement(`span`);
+        spanTimeText.textContent = video.length_min;
+
+        card.append(cardImg);
+        card.append(cardDescription);
+        cardDescription.append(h2);
+        wrapper.append(card);
+        cardsVideo.append(wrapper);
+
+        spanViews.append(imgViews);
+        spanViews.append(spanViewsText);
+
+        spanTime.append(imgTime);
+        spanTime.append(spanTimeText);
+
+        p.append(spanViews);
+        p.append(spanTime);
+
+        cardDescription.append(p);
+        // Nel caso dovessi mettere degli eventi a questo div, dovresti scrivere la creazione degli elementi singoli.
+        // ././img/clock-circular-outline.png => ./ significa current directory. Di conseguenza ././ e' una modo di dire quanto si capisce dei path relativi.
+    });
 }
 
-function CreaHome() {
-    console.log("Crea Home");
-    tipoRicerca = 5;
-    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=42", {
-        "method": "GET",
-        "headers": {
-            "Accept": "application/json"
-        }
-    })
-        .then(response => response.json())
-        .then(result => { stampaCards(result) })
-        .catch(error => console.log('Error:', error));
-    window.scrollTo(top);
-}
-
-function CreaTrending() {
-    console.log("Crea Trending");
-    tipoRicerca = 6;
-    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=36", {
-        "method": "GET",
-        "headers": {
-            "Accept": "application/json"
-        }
-    })
-        .then(response => response.json())
-        .then(result => { stampaCards(result) })
-        .catch(error => console.log('Error:', error));
-}
-
-function stampaTitolo(testo, numeroParole) {
-    let parole = testo.split('');
-    let paroleDaStampare = parole.slice(0, numeroParole).join('');
-    return paroleDaStampare;
-}
-
-function next() {
-    window.scrollTo(top);
-    switch (tipoRicerca) {
-        case 1:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
+    function CreaHome() {
+        console.log("Crea Home");
+        tipoRicerca = 5;
+        fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=42", {
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json"
             }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
+        })
+            .then(response => response.json())
+            .then(result => { stampaCards(result) })
+            .catch(error => console.log('Error:', error));
+        window.scrollTo(top);
+    }
 
-        case 2:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
+    function CreaTrending() {
+        console.log("Crea Trending");
+        tipoRicerca = 6;
+        fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=36", {
+            "method": "GET",
+            "headers": {
+                "Accept": "application/json"
             }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 3:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 4:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
+        })
+            .then(response => response.json())
+            .then(result => { stampaCards(result) })
+            .catch(error => console.log('Error:', error));
+    }
+
+    function stampaTitolo(testo, numeroParole) {
+        let parole = testo.split('');
+        let paroleDaStampare = parole.slice(0, numeroParole).join('');
+        return paroleDaStampare;
+    }
+
+    function next() {
+        window.scrollTo(top);
+        switch (tipoRicerca) {
+            case 1:
+                if (pagina > 0 && pagina < 100) {
+                    pagina++;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
+
+            case 2:
+                if (pagina > 0 && pagina < 100) {
+                    pagina++;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
+            case 3:
+                if (pagina > 0 && pagina < 100) {
+                    pagina++;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
+            case 4:
+                if (pagina > 0 && pagina < 100) {
+                    pagina++;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
 
             case 5:
                 if (pagina > 0 && pagina < 100) {
@@ -278,69 +330,69 @@ function next() {
                 console.log(pagina);
                 intestazione.innerHTML = "Pagina " + pagina;
                 CreaHome();
-            break;
+                break;
 
-        case 6:
+            case 6:
 
-        if (pagina > 0 && pagina < 100) {
-            pagina++;
-        } else {
-            pagina = 1;
+                if (pagina > 0 && pagina < 100) {
+                    pagina++;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                CreaTrending();
+
+            default:
+                break;
         }
-        console.log(pagina);
-        intestazione.innerHTML = "Pagina " + pagina;
-        CreaTrending();
 
-        default:
-            break;
     }
 
-}
+    function prev() {
+        window.scrollTo(top);
+        switch (tipoRicerca) {
+            case 1:
+                if (pagina > 0 && pagina < 100) {
+                    pagina--;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
 
-function prev() {
-    window.scrollTo(top);
-    switch (tipoRicerca) {
-        case 1:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-
-        case 2:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 3:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 4:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
+            case 2:
+                if (pagina > 0 && pagina < 100) {
+                    pagina--;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
+            case 3:
+                if (pagina > 0 && pagina < 100) {
+                    pagina--;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
+            case 4:
+                if (pagina > 0 && pagina < 100) {
+                    pagina--;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                Ricerca();
+                break;
 
             case 5:
                 if (pagina > 0 && pagina < 100) {
@@ -351,49 +403,49 @@ function prev() {
                 console.log(pagina);
                 intestazione.innerHTML = "Pagina " + pagina;
                 CreaHome();
-            break;
+                break;
 
-        case 6:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            CreaTrending();
-            break;
+            case 6:
+                if (pagina > 0 && pagina < 100) {
+                    pagina--;
+                } else {
+                    pagina = 1;
+                }
+                console.log(pagina);
+                intestazione.innerHTML = "Pagina " + pagina;
+                CreaTrending();
+                break;
 
-        default:
-            break;
+            default:
+                break;
+        }
     }
-}
 
-categoria.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        btn.click();
-    }
-});
+    categoria.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            btn.click();
+        }
+    });
 
-search.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        btn.click();
-    }
-});
+    search.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            btn.click();
+        }
+    });
 
-selectDurata.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        btn.click();
-    }
-});
+    selectDurata.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            btn.click();
+        }
+    });
 
-selectSezione.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        btn.click();
-    }
-});
+    selectSezione.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            btn.click();
+        }
+    });
 
