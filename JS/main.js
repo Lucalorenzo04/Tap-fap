@@ -166,7 +166,6 @@ function Ricerca() {
 function stampaCards(result) {
     console.log(result);
     let arrayVideo = result.videos;
-    let arrayVideoThumbs = arrayVideo[0].thumbs[0].src;
     let cardsVideo = document.getElementById('video');
 
     cardsVideo.innerHTML = "";
@@ -176,7 +175,7 @@ function stampaCards(result) {
         return;
     }
 
-    arrayVideo.forEach((video, index)=> {
+    arrayVideo.forEach((video, index) => {
         const wrapper = document.createElement(`div`);
         wrapper.className = `col`;
 
@@ -187,6 +186,8 @@ function stampaCards(result) {
         const cardImg = document.createElement(`img`);
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
+        card.onmouseover = function () { changeImageOnHover(card, arrayVideo[index].thumbs[0].src) };
+        card.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src) };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -256,205 +257,104 @@ function CreaHome() {
     window.scrollTo(top);
 }
 
-    function CreaTrending() {
-        console.log("Crea Trending");
-        tipoRicerca = 6;
-        fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=36", {
-            "method": "GET",
-            "headers": {
-                "Accept": "application/json"
-            }
-        })
-            .then(response => response.json())
-            .then(result => { stampaCards(result) })
-            .catch(error => console.log('Error:', error));
-    }
+function CreaTrending() {
+    console.log("Crea Trending");
+    tipoRicerca = 6;
+    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=36", {
+        "method": "GET",
+        "headers": {
+            "Accept": "application/json"
+        }
+    })
+        .then(response => response.json())
+        .then(result => { stampaCards(result) })
+        .catch(error => console.log('Error:', error));
+}
 
-    function stampaTitolo(testo, numeroParole) {
-        let parole = testo.split('');
-        let paroleDaStampare = parole.slice(0, numeroParole).join('');
-        return paroleDaStampare;
-    }
+function stampaTitolo(testo, numeroParole) {
+    let parole = testo.split('');
+    let paroleDaStampare = parole.slice(0, numeroParole).join('');
+    return paroleDaStampare;
+}
 
 function next() {
     window.scrollTo(top);
+    if (pagina > 0 && pagina < 100) {
+        pagina++;
+    } else {
+        pagina = 1;
+    }
+    intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
     switch (tipoRicerca) {
-        case 1:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
+        case 5:
+            CreaHome();
             break;
-
-        case 2:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 3:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 4:
-            if (pagina > 0 && pagina < 100) {
-                pagina++;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-
-            case 5:
-                if (pagina > 0 && pagina < 100) {
-                    pagina++;
-                } else {
-                    pagina = 1;
-                }
-                console.log(pagina);
-                intestazione.innerHTML = "Pagina " + pagina;
-                CreaHome();
-            break;
-
         case 6:
-
-        if (pagina > 0 && pagina < 100) {
-            pagina++;
-        } else {
-            pagina = 1;
-        }
-        console.log(pagina);
-        intestazione.innerHTML = "Pagina " + pagina;
-        CreaTrending();
-
+            CreaTrending();
         default:
+            Ricerca();
             break;
     }
-
-    }
+}
 
 function prev() {
     window.scrollTo(top);
+    if (pagina > 0 && pagina < 100) {
+        pagina--;
+    } else {
+        pagina = 1;
+    }
+    intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
     switch (tipoRicerca) {
-        case 1:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
+        case 5:
+            CreaHome();
             break;
-
-        case 2:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 3:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-        case 4:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
-            Ricerca();
-            break;
-
-            case 5:
-                if (pagina > 0 && pagina < 100) {
-                    pagina--;
-                } else {
-                    pagina = 1;
-                }
-                console.log(pagina);
-                intestazione.innerHTML = "Pagina " + pagina;
-                CreaHome();
-            break;
-
         case 6:
-            if (pagina > 0 && pagina < 100) {
-                pagina--;
-            } else {
-                pagina = 1;
-            }
-            console.log(pagina);
-            intestazione.innerHTML = "Pagina " + pagina;
             CreaTrending();
             break;
-
         default:
             break;
     }
 }
 
-    categoria.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            btn.click();
-        }
-    });
+categoria.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        btn.click();
+    }
+});
 
-    search.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            btn.click();
-        }
-    });
+search.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        btn.click();
+    }
+});
 
-    selectDurata.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            btn.click();
-        }
-    });
+selectDurata.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        btn.click();
+    }
+});
 
-    selectSezione.addEventListener("keypress", function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            btn.click();
-        }
-    });
+selectSezione.addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        btn.click();
+    }
+});
 
-function changeImageOnHover(cardElement, imageArray) {
-    var currentIndex = 0;
-    currentIndex = (currentIndex + 1) % imageArray.length;
-    cardElement.querySelector('img').src = imageArray[currentIndex].src;
+function changeImageOnHover(cardElement, thumbBase) {
+    let prec = 1
+    cardElement.querySelector('img').src = thumbBase;
+    for (let i = 2; i < 15; i++) {
+        cardElement.querySelector('img').src = thumbBase.replace(prec + "_", i + "_");
+        setInterval(500);
+    }
+
 }
 
 function changeImageOnHoverOut(cardElement, thumb) {
-cardElement.querySelector('img').src = thumb;
+    cardElement.querySelector('img').src = thumb;
 }
