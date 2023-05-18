@@ -1,7 +1,7 @@
 
-let tipoRicerca = 2;
-let pagina = 1;
-let api_url_getall = "https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=36";
+var tipoRicerca = 2;
+var pagina = 1;
+var api_url_getall = "https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=36";
 const btn = document.getElementById('cerca');
 const btnNext = document.getElementById("next");
 const btnPrev = document.getElementById('previous');
@@ -10,6 +10,7 @@ const search = document.getElementById('ricerca');
 const selectDurata = document.getElementById('durata');
 const selectSezione = document.getElementById('sezione');
 let intestazione = document.getElementById("intestazione");
+var hoverInterval;
 if (btn) {
     btn.addEventListener("click", Ricerca);
 }
@@ -186,8 +187,8 @@ function stampaCards(result) {
         const cardImg = document.createElement(`img`);
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
-        card.onmouseover = function () { changeImageOnHover(card, arrayVideo[index].thumbs[0].src) };
-        card.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src) };
+        cardImg.onmouseover = function () { changeImageOnHover(card, arrayVideo[index].thumbs[0].src) };
+        cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src) };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -313,6 +314,7 @@ function prev() {
             CreaTrending();
             break;
         default:
+            Ricerca();
             break;
     }
 }
@@ -346,15 +348,37 @@ selectSezione.addEventListener("keypress", function (event) {
 });
 
 function changeImageOnHover(cardElement, thumbBase) {
-    let prec = 1
+    let i = 2;
+    let prec = 1;
+    let url;
+    inizio = thumbBase;
+    console.log("inizio = " + inizio);
     cardElement.querySelector('img').src = thumbBase;
-    for (let i = 2; i < 15; i++) {
-        cardElement.querySelector('img').src = thumbBase.replace(prec + "_", i + "_");
-        setInterval(500);
-    }
+    hoverInterval = setInterval(() => {
+        cardElement.querySelector('img').src = thumbBase;
+        console.log("i = " + i);
+        console.log("prec" + prec);
+        console.log("thumbBase = " + thumbBase);
+        url=thumbBase.replace(prec + "_", i + "_");
+        thumbBase=url;
+        console.log("url = " + url);
+        if (i == 16 || prec == 15) {
+            i = 2;
+            prec = 1;
+            thumbBase = inizio;
+
+        } else {
+            cardElement.querySelector('img').src = thumbBase.replace(prec + "_", i + "_");
+            i++;
+            prec++;
+        }
+
+    }, 500);
+
 
 }
 
 function changeImageOnHoverOut(cardElement, thumb) {
+    clearTimeout(hoverInterval);
     cardElement.querySelector('img').src = thumb;
 }
