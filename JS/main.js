@@ -191,12 +191,12 @@ function stampaCards(result) {
             changeImageOnHover(card, arrayVideo[index].thumbs[0].src)
         };
         cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
-        /* cardImg.ontouchstart = function () {
+        cardImg.ontouchstart = function () {
             clearInterval(hoverInterval)
             changeImageOnHover(card, arrayVideo[index].thumbs[0].src)
         };
         cardImg.ontouchend = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
- */
+
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
 
@@ -380,7 +380,7 @@ function changeImageOnHover(cardElement, thumbBase) {
 }
 //Funzione per cambiare l'immagine della card quando il mouse esce dalla card
 function changeImageOnHoverOut(card, thumb, titolo) {
-    clearin(hoverInterval);
+    clearInterval(hoverInterval);
     card.querySelector('img').src = thumb;
     card.querySelector('h2').textContent = titolo;
 }
