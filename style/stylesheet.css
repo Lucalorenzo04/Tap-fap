@@ -1,9 +1,6 @@
 @font-face {
-  /* font */
   font-family: Generale;
-  src: url("./../fonts/Prototype.ttf");
-  /* file*/
-
+  src: url("./../fonts/Gotham-Black.otf");
   font-display: swap;
 }
 
@@ -27,6 +24,12 @@ body {
   color: orange;
 }
 
+.dropdown-item:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(41, 48, 54);
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+}
 option {
   color: white;
   background-color: rgb(41, 48, 54);
@@ -34,20 +37,26 @@ option {
 }
 
 #categoria {
-  color: rgb(238, 115, 0);
+  color: rgb(238, 159, 84);
 }
 
 #titolo {
   color: white;
   font-size: 150%;
   margin-left: 1.5%;
+  
 }
 
 h1 {
   color: white;
   text-align: center;
-  margin-top: 1%;
+  margin-top: 1.5%;
   margin-bottom: 2%;
+}
+
+.navbar-toggler {
+  color: rgb(221, 118, 21);
+  margin-right: 5%;
 }
 
 nav#pagination {
@@ -129,7 +138,7 @@ p {
   margin-right: 6%;
 }
 
-#form_ricerca{
+#form_ricerca {
   margin-right: 2%;
 }
 
@@ -159,7 +168,7 @@ p {
   width: 100%;
 }
 .card-description h2 {
-  font-size: 22px;
+  font-size: 150%;
   text-align: center;
   align-items: center;
   color: #ffffff;
@@ -185,16 +194,16 @@ p {
   margin-right: 0.5%;
 }
 
-.btn#next{
+.btn#next {
   width: 12%;
 }
 
-.btn#previous{
+.btn#previous {
   width: 12%;
   margin-right: 5%;
 }
 
-.pagination{
+.pagination {
   width: 100%;
   display: contents;
 }
@@ -245,6 +254,7 @@ p {
     font-size: 10px;
     text-align: center;
     align-items: center;
+    
   }
   .card-description p {
     font-size: 15px;
@@ -252,16 +262,16 @@ p {
     align-items: center;
   }
 
-  .btn#next{
+  .btn#next {
     width: 15%;
   }
-  
-  .btn#previous{
+
+  .btn#previous {
     width: 15%;
     margin-right: 5%;
   }
-  
-  .pagination{
+
+  .pagination {
     width: 100%;
     display: contents;
   }
@@ -324,18 +334,22 @@ p {
   h1 {
     margin-top: 4%;
     margin-bottom: 4.5%;
-    font-size: 40px;
+    font-size: 33px;
   }
 
-  .btn#next{
+  .btn#next {
     width: 20%;
   }
-  
-  .btn#previous{
+
+  .btn#previous {
     width: 20%;
     margin-right: 5%;
   }
-  img#icone{
+  img#icone {
     width: 7%;
+  }
+
+  #titolo{
+    margin-left: 5.5%;
   }
 }

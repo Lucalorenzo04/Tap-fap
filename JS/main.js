@@ -192,12 +192,12 @@ function stampaCards(result) {
         cardImg.onmouseover = function () {
             changeImageOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
+        cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 30)) };
         cardImg.ontouchstart = function () {
             clearInterval(hoverInterval)
             changeImageOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.ontouchend = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
+        cardImg.ontouchend = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 30)) };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
