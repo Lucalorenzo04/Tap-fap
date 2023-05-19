@@ -22,6 +22,7 @@ if (btnPrev) {
 if (btnNext) {
     btnNext.addEventListener("click", next);
 }
+// funzione che mi fa cambiare il filtro di ricerca
 function SwitchInputSelect(num) {
     switch (num) {
         case 1:
@@ -70,7 +71,7 @@ function SwitchInputSelect(num) {
 
     }
 }
-
+// funzione che mi fa la ricerca in base al filtro selezionato
 function Ricerca() {
 
     switch (tipoRicerca) {
@@ -163,7 +164,7 @@ function Ricerca() {
             break;
     }
 }
-
+// funzione che mi stampa le cards
 function stampaCards(result) {
     console.log(result);
     let arrayVideo = result.videos;
@@ -175,7 +176,7 @@ function stampaCards(result) {
         intestazione.innerHTML = "Nessun risultato";
         return;
     }
-
+    // stampa delle cards
     arrayVideo.forEach((video, index) => {
         const wrapper = document.createElement(`div`);
         wrapper.className = `col`;
@@ -249,7 +250,7 @@ function stampaCards(result) {
         // ././img/clock-circular-outline.png => ./ significa current directory. Di conseguenza ././ e' una modo di dire quanto si capisce dei path relativi.
     });
 }
-
+// funzione che mi crea la homepage quando carica la pagina index
 function CreaHome() {
     console.log("Crea Home");
     tipoRicerca = 5;
@@ -264,7 +265,7 @@ function CreaHome() {
         .catch(error => console.log('Error:', error));
     window.scrollTo(top);
 }
-
+// funzione che mi crea la pagina trending quando carica la pagina trending
 function CreaTrending() {
     console.log("Crea Trending");
     tipoRicerca = 6;
@@ -278,13 +279,13 @@ function CreaTrending() {
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
 }
-
+//funzione che mi stampa il titolo del video limitando i caratteri
 function stampaTitolo(testo, numeroParole) {
     let parole = testo.split('');
     let paroleDaStampare = parole.slice(0, numeroParole).join('');
     return paroleDaStampare;
 }
-
+// funzione che mi fa andare alla pagina successiva
 function next() {
     window.scrollTo(top);
     if (pagina > 0 && pagina < 100) {
@@ -304,7 +305,7 @@ function next() {
             break;
     }
 }
-
+// funzione che mi fa andare alla pagina precedente
 function prev() {
     window.scrollTo(top);
     if (pagina > 0 && pagina < 100) {
@@ -325,7 +326,7 @@ function prev() {
             break;
     }
 }
-
+//Funzione per far funzionare il tasto invio nella select della categoria
 categoria.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
