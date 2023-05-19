@@ -56,7 +56,7 @@ h1 {
 
 .navbar-toggler {
   color: rgb(221, 118, 21);
-  margin-right: 5%;
+  margin-right: 6.10%;
 }
 
 nav#pagination {
@@ -350,6 +350,6 @@ p {
   }
 
   #titolo{
-    margin-left: 5.5%;
+    margin-left: 6%;
   }
 }
