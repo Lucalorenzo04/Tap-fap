@@ -189,6 +189,8 @@ function stampaCards(result) {
         cardImg.className = `card-img-top`;
         cardImg.onmouseover = function () { changeImageOnHover(card, arrayVideo[index].thumbs[0].src) };
         cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src,stampaTitolo(arrayVideo[index].title, 60)) };
+        cardImg.ontouchstart = function () { changeImageOnHover(card, arrayVideo[index].thumbs[0].src) };
+        cardImg.ontouchend = function () { changeImageOnHoverOut(card, video.default_thumb.src,stampaTitolo(arrayVideo[index].title, 60)) };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -339,14 +341,14 @@ selectDurata.addEventListener("keypress", function (event) {
         btn.click();
     }
 });
-
+//Funzione per far funzionare il tasto invio nella select della sezione
 selectSezione.addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
         btn.click();
     }
 });
-
+//Funzione per cambiare l'immagine della card quando il mouse entra nella card
 function changeImageOnHover(cardElement, thumbBase) {
     let i = 2;
     let prec = 1;
@@ -358,7 +360,7 @@ function changeImageOnHover(cardElement, thumbBase) {
         cardElement.querySelector('img').src = thumbBase;
         url = thumbBase.replace(prec + "_", i + "_");
         thumbBase = url;
-        if (i == 16 || prec == 15) {
+        if (i == 15 || prec == 14) {
             i = 2;
             prec = 1;
             thumbBase = inizio;
@@ -369,9 +371,9 @@ function changeImageOnHover(cardElement, thumbBase) {
             i++;
             prec++;
         }
-    }, 350);
+    }, 400);
 }
-
+//Funzione per cambiare l'immagine della card quando il mouse esce dalla card
 function changeImageOnHoverOut(card, thumb, titolo) {
     clearTimeout(hoverInterval);
     card.querySelector('img').src = thumb;
