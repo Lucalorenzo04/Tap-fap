@@ -4,6 +4,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: intitolazione;
+  src: url("./../fonts/youtube-sans-bold.ttf");
+  font-display: swap;
+}
+
 #ricerca {
   color: rgb(241, 123, 54);
 }
@@ -171,6 +177,7 @@ p {
   text-align: center;
   align-items: center;
   color: #ffffff;
+  font-family: intitolazione;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
 }
 .card-description p {
