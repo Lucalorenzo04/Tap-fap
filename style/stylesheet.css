@@ -294,6 +294,17 @@ p {
     width: 18px;
   }
 }
+
+@media screen and (max-width: 725px) {
+  #n-views {
+    font-size: 70%;
+  }
+
+  #time {
+    font-size: 70%;
+    margin-right: 5%;
+  }
+}
 @media screen and (max-width: 575px) {
   .card-description h2 {
     font-size: 22px;
@@ -323,5 +334,8 @@ p {
   .btn#previous{
     width: 20%;
     margin-right: 5%;
+  }
+  img#icone{
+    width: 7%;
   }
 }
