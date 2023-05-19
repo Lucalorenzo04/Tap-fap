@@ -188,14 +188,14 @@ function stampaCards(result) {
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
         cardImg.onmouseover = function () { changeImageOnHover(card, arrayVideo[index].thumbs[0].src) };
-        cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src) };
+        cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src,stampaTitolo(arrayVideo[index].title, 60)) };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
 
         const h2 = document.createElement(`h2`);
         h2.className = `card-title`;
-        h2.textContent = stampaTitolo(arrayVideo[index].title, 75);
+        h2.textContent = stampaTitolo(arrayVideo[index].title, 60);
 
         const p = document.createElement(`p`);
         p.className = `card-text`;
@@ -352,33 +352,28 @@ function changeImageOnHover(cardElement, thumbBase) {
     let prec = 1;
     let url;
     inizio = thumbBase;
-    console.log("inizio = " + inizio);
     cardElement.querySelector('img').src = thumbBase;
+    cardElement.querySelector('h2').textContent = "";
     hoverInterval = setInterval(() => {
         cardElement.querySelector('img').src = thumbBase;
-        console.log("i = " + i);
-        console.log("prec" + prec);
-        console.log("thumbBase = " + thumbBase);
-        url=thumbBase.replace(prec + "_", i + "_");
-        thumbBase=url;
-        console.log("url = " + url);
+        url = thumbBase.replace(prec + "_", i + "_");
+        thumbBase = url;
         if (i == 16 || prec == 15) {
             i = 2;
             prec = 1;
             thumbBase = inizio;
+            cardElement.querySelector('img').src = thumbBase;
 
         } else {
             cardElement.querySelector('img').src = thumbBase.replace(prec + "_", i + "_");
             i++;
             prec++;
         }
-
-    }, 500);
-
-
+    }, 350);
 }
 
-function changeImageOnHoverOut(cardElement, thumb) {
+function changeImageOnHoverOut(card, thumb, titolo) {
     clearTimeout(hoverInterval);
-    cardElement.querySelector('img').src = thumb;
+    card.querySelector('img').src = thumb;
+    card.querySelector('h2').textContent = titolo;
 }
