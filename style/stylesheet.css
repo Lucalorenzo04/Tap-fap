@@ -121,7 +121,9 @@ select {
   text-shadow: 0 0 2px #000000;
   background-size: cover !important;
   align-items: center;
+  border: none;
 }
+
 h5 {
   margin-left: 5%;
   margin-bottom: 2%;
