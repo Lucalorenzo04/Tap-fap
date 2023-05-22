@@ -186,18 +186,21 @@ function stampaCards(result) {
         card.className = `card`;
         card.addEventListener(`click`, (ev) => window.open(video.embed));
 
+        const p = document.createElement(`p`);
+        p.className = `card-text`;
+
         const cardImg = document.createElement(`img`);
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
         cardImg.onmouseover = function () {
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
+        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)),p};
         cardImg.ontouchstart = function () {
             clearInterval(hoverInterval)
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
+        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)),p};
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -205,9 +208,6 @@ function stampaCards(result) {
         const h2 = document.createElement(`h2`);
         h2.className = `card-title`;
         h2.textContent = stampaTitolo(arrayVideo[index].title, 60);
-
-        const p = document.createElement(`p`);
-        p.className = `card-text`;
 
         const spanViews = document.createElement(`span`);
         spanViews.className = `card-text`;
@@ -363,6 +363,7 @@ function CambiaImmagineOnHover(cardElement, thumbBase) {
     inizio = thumbBase;
     cardElement.querySelector('img').src = thumbBase;
     cardElement.querySelector('h2').textContent = "";
+    cardElement.querySelector('p').classList.add("visually-hidden");
     hoverInterval = setInterval(() => {
         cardElement.querySelector('img').src = thumbBase;
         url = thumbBase.replace(prec + "_", i + "_");
@@ -385,4 +386,5 @@ function setImmagineDefault(card, thumb, titolo) {
     clearInterval(hoverInterval);
     card.querySelector('img').src = thumb;
     card.querySelector('h2').textContent = titolo;
+    card.querySelector('p').classList.remove("visually-hidden");
 }
