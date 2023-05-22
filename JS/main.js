@@ -190,14 +190,22 @@ function stampaCards(result) {
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
         cardImg.onmouseover = function () {
-            changeImageOnHover(card, arrayVideo[index].thumbs[0].src)
+            CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
+<<<<<<< Updated upstream
         cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 30)) };
+=======
+        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
+>>>>>>> Stashed changes
         cardImg.ontouchstart = function () {
             clearInterval(hoverInterval)
-            changeImageOnHover(card, arrayVideo[index].thumbs[0].src)
+            CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
+<<<<<<< Updated upstream
         cardImg.ontouchend = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 30)) };
+=======
+        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
+>>>>>>> Stashed changes
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -356,7 +364,7 @@ selectSezione.addEventListener("keypress", function (event) {
     }
 });
 //Funzione per cambiare l'immagine della card quando il mouse entra nella card
-function changeImageOnHover(cardElement, thumbBase) {
+function CambiaImmagineOnHover(cardElement, thumbBase) {
     let i = 2;
     let prec = 1;
     let url;
@@ -381,7 +389,7 @@ function changeImageOnHover(cardElement, thumbBase) {
     }, 400);
 }
 //Funzione per cambiare l'immagine della card quando il mouse esce dalla card
-function changeImageOnHoverOut(card, thumb, titolo) {
+function setImmagineDefault(card, thumb, titolo) {
     clearInterval(hoverInterval);
     card.querySelector('img').src = thumb;
     card.querySelector('h2').textContent = titolo;
