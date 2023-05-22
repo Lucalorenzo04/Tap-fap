@@ -120,7 +120,7 @@ select {
   background-size: cover !important;
   color: white;
   border-radius: 5px;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.2));
+
   align-items: center;
   border-color: grey;
 }
@@ -131,9 +131,7 @@ h5 {
   margin-right: 75%;
 }
 p {
-  margin-bottom: 0%;
-  margin-left: 0%;
-  margin-right: 0%;
+  margin: 0% 0% 0% 0%;
   display: flex;
 }
 #clock {
@@ -170,6 +168,8 @@ p {
   position: absolute;
   bottom: 0%;
   width: 100%;
+  text-shadow: 1.7px 1px 2px rgba(0, 0, 0, 1);
+  box-shadow: 1.7px 1px 2px rgba(0, 0, 0, 1);
 }
 .card-description h2 {
   font-size: 140%;
@@ -177,9 +177,8 @@ p {
   align-items: center;
   color: #ffffff;
   font-family: intitolazione;
-  text-shadow: 1.7px 1px 2px rgba(0, 0, 0, 1);
   padding: 0% 2% 0% 2%;
-  margin-bottom: 0%;
+  margin-bottom: 0.5%;
 }
 .card-description p {
   font-size: 20px;

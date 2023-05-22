@@ -195,12 +195,12 @@ function stampaCards(result) {
         cardImg.onmouseover = function () {
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)),p};
+        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65))};
         cardImg.ontouchstart = function () {
             clearInterval(hoverInterval)
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)),p};
+        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65))};
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -247,8 +247,6 @@ function stampaCards(result) {
         p.append(spanTime);
 
         cardDescription.append(p);
-        // Nel caso dovessi mettere degli eventi a questo div, dovresti scrivere la creazione degli elementi singoli.
-        // ././img/clock-circular-outline.png => ./ significa current directory. Di conseguenza ././ e' una modo di dire quanto si capisce dei path relativi.
     });
 }
 // funzione che mi crea la homepage quando carica la pagina index
