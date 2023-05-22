@@ -159,7 +159,6 @@ function Ricerca() {
             }
             break;
         default:
-            tipoRicerca = 2;
             document.getElementById("ricerca").value = "";
             break;
     }
@@ -195,12 +194,12 @@ function stampaCards(result) {
         cardImg.onmouseover = function () {
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65))};
+        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
         cardImg.ontouchstart = function () {
             clearInterval(hoverInterval)
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65))};
+        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -287,6 +286,7 @@ function stampaTitolo(testo, numeroParole) {
 // funzione che mi fa andare alla pagina successiva
 function next() {
     window.scrollTo(top);
+    console.log(tipoRicerca);
     if (pagina > 0 && pagina < 100) {
         pagina++;
     } else {
@@ -296,9 +296,11 @@ function next() {
     switch (tipoRicerca) {
         case 5:
             CreaHome();
+            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
             break;
         case 6:
             CreaTrending();
+            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
         default:
             Ricerca();
             break;
@@ -316,9 +318,11 @@ function prev() {
     switch (tipoRicerca) {
         case 5:
             CreaHome();
+            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
             break;
         case 6:
             CreaTrending();
+            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
             break;
         default:
             Ricerca();

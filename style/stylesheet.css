@@ -84,7 +84,9 @@ nav#pagination a:hover {
 
 div.card:hover {
   cursor: pointer;
-  border-color: rgb(230, 102, 55);
+  -webkit-box-shadow: 3px 2px 5px 1px rgba(214,95,26,1);
+-moz-box-shadow: 3px 2px 5px 1px rgba(214,95,26,1);
+box-shadow: 3px 2px 5px 1px rgba(214,95,26,1);
 }
 
 body::-webkit-scrollbar {
@@ -118,11 +120,7 @@ select {
   height: 100%;
   text-shadow: 0 0 2px #000000;
   background-size: cover !important;
-  color: white;
-  border-radius: 5px;
-
   align-items: center;
-  border-color: grey;
 }
 h5 {
   margin-left: 5%;
@@ -168,8 +166,6 @@ p {
   position: absolute;
   bottom: 0%;
   width: 100%;
-  text-shadow: 1.7px 1px 2px rgba(0, 0, 0, 1);
-  box-shadow: 1.7px 1px 2px rgba(0, 0, 0, 1);
 }
 .card-description h2 {
   font-size: 140%;
@@ -214,14 +210,14 @@ p {
   display: contents;
 }
 
-@media screen and (max-width: 1266px) {
+@media screen and (max-width: 1250px) {
   .card-description h2 {
-    font-size: 13px;
+    font-size: 100%;
     text-align: center;
     align-items: center;
   }
   .card-description p {
-    font-size: 13px;
+    font-size: 120%;
     text-align: center;
     align-items: center;
   }
@@ -238,15 +234,15 @@ p {
     margin-bottom: 3%;
   }
   #views {
-    width: 28px;
-    margin-right: 15%;
+    width: 15%;
+    margin-right: 5%;
   }
 
   #n-views {
     font-size: 15px;
   }
   #clock {
-    width: 26px;
+    width: 25%;
   }
 
   #time {
@@ -322,9 +318,12 @@ p {
 }
 @media screen and (max-width: 575px) {
   .card-description h2 {
-    font-size: 120%;
+    font-size: 100%;
   }
 
+  .card-description p {
+    font-size: 120%;
+  }
   .row {
     width: 100%;
     margin-bottom: 1%;
