@@ -192,20 +192,12 @@ function stampaCards(result) {
         cardImg.onmouseover = function () {
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-<<<<<<< Updated upstream
-        cardImg.onmouseleave = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 30)) };
-=======
         cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
->>>>>>> Stashed changes
         cardImg.ontouchstart = function () {
             clearInterval(hoverInterval)
             CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
         };
-<<<<<<< Updated upstream
-        cardImg.ontouchend = function () { changeImageOnHoverOut(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 30)) };
-=======
         cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 60)) };
->>>>>>> Stashed changes
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
