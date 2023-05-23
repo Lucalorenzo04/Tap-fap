@@ -81,7 +81,7 @@ function Ricerca() {
             let categoria = document.getElementById("categoria").value;
             intestazione.innerHTML = "";
             console.log(categoria);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=3&query=" + categoria, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=36&query=" + categoria, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -98,7 +98,7 @@ function Ricerca() {
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
             console.log(key_word);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=3&query=" + key_word, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=36&query=" + key_word, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -120,7 +120,7 @@ function Ricerca() {
             }
 
             console.log(time);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json&per_page=3", {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json&per_page=36", {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"

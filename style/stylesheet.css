@@ -15,7 +15,7 @@ nav.navbar {
 }
 
 #ricerca {
-  color: rgb(241, 123, 54);
+  color: orange;
 }
 
 #pagina {
@@ -24,7 +24,7 @@ nav.navbar {
 }
 
 span#ricerca {
-  color: rgb(241, 123, 54);
+  color: orange;
 }
 
 body {
@@ -67,6 +67,10 @@ h1 {
   text-align: center;
   margin-top: 1.5%;
   margin-bottom: 2%;
+}
+
+li.page-item{
+  font-size: 23px;
 }
 
 .navbar-toggler {
@@ -213,6 +217,7 @@ p {
 span#pagina {
   width: 5%;
   height: 5%;
+  font-size: 23px;
   background-color: transparent !important;
 }
 
