@@ -94,7 +94,7 @@ nav#pagination a:hover {
 
 div.card:hover {
   cursor: pointer;
-  box-shadow: 9px 10px 5px -7px orangered;
+ box-shadow: rgb(228, 99, 7) 1px 1px 10px 2px;
 }
 
 .container-fluid {
