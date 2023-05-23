@@ -262,7 +262,7 @@ function CreaHome() {
     cambiaPagina();
     console.log("Crea Home");
     tipoRicerca = 5;
-    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page", {
+    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=36", {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
@@ -282,7 +282,7 @@ function CreaTrending() {
     }
     console.log("Crea Trending");
     tipoRicerca = 6;
-    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page", {
+    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=36", {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
