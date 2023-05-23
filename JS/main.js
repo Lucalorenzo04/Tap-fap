@@ -10,6 +10,7 @@ const search = document.getElementById('ricerca');
 const selectDurata = document.getElementById('durata');
 const selectSezione = document.getElementById('sezione');
 let intestazione = document.getElementById("intestazione");
+let indicePagina = document.getElementById("pagina");
 var hoverInterval;
 if (btn) {
     btn.addEventListener("click", Ricerca);
@@ -73,7 +74,7 @@ function SwitchInputSelect(num) {
 }
 // funzione che mi fa la ricerca in base al filtro selezionato
 function Ricerca() {
-
+    cambiaPagina();
     switch (tipoRicerca) {
         case 1:
             console.log("Ricerca per categoria");
@@ -191,15 +192,20 @@ function stampaCards(result) {
         const cardImg = document.createElement(`img`);
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
-        cardImg.onmouseover = function () {
-            CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
+        card.onmouseover = function () {
+            clearInterval(hoverInterval);
+            CambiaImmagineOnHover(this, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.onmouseleave = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
-        cardImg.ontouchstart = function () {
+        card.onmouseleave = function () {
+            clearInterval(hoverInterval); 
+            setImmagineDefault(this, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
+        card.ontouchstart = function () {
             clearInterval(hoverInterval)
-            CambiaImmagineOnHover(card, arrayVideo[index].thumbs[0].src)
+            CambiaImmagineOnHover(this, arrayVideo[index].thumbs[0].src)
         };
-        cardImg.ontouchend = function () { setImmagineDefault(card, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
+        card.ontouchend = function () {
+            clearInterval(hoverInterval);
+            setImmagineDefault(this, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -250,6 +256,10 @@ function stampaCards(result) {
 }
 // funzione che mi crea la homepage quando carica la pagina index
 function CreaHome() {
+    if (pagina == 1) {
+        intestazione.innerHTML = "Ultime uscite";
+    }
+    cambiaPagina();
     console.log("Crea Home");
     tipoRicerca = 5;
     fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=42", {
@@ -261,10 +271,15 @@ function CreaHome() {
         .then(response => response.json())
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
+    cambiaPagina();
     window.scrollTo(top);
 }
 // funzione che mi crea la pagina trending quando carica la pagina trending
 function CreaTrending() {
+    cambiaPagina();
+    if (pagina == 1) {
+        intestazione.innerHTML = `<span><img src="./img/campfire.png" alt="" id="icone"></span>Trending<span><img src="./img/campfire.png" alt="" id="icone"></span>`;
+    }
     console.log("Crea Trending");
     tipoRicerca = 6;
     fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=39", {
@@ -276,6 +291,7 @@ function CreaTrending() {
         .then(response => response.json())
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
+
 }
 //funzione che mi stampa il titolo del video limitando i caratteri
 function stampaTitolo(testo, numeroParole) {
@@ -286,21 +302,19 @@ function stampaTitolo(testo, numeroParole) {
 // funzione che mi fa andare alla pagina successiva
 function next() {
     window.scrollTo(top);
+    intestazione.innerHTML = "";
     console.log(tipoRicerca);
     if (pagina > 0 && pagina < 100) {
         pagina++;
     } else {
         pagina = 1;
     }
-    intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
     switch (tipoRicerca) {
         case 5:
             CreaHome();
-            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
             break;
         case 6:
             CreaTrending();
-            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
         default:
             Ricerca();
             break;
@@ -309,20 +323,19 @@ function next() {
 // funzione che mi fa andare alla pagina precedente
 function prev() {
     window.scrollTo(top);
+    intestazione.innerHTML = "";
     if (pagina > 1 && pagina < 100) {
         pagina--;
     } else {
         pagina = 1;
+       
     }
-    intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
     switch (tipoRicerca) {
         case 5:
             CreaHome();
-            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
             break;
         case 6:
             CreaTrending();
-            intestazione.innerHTML = "Pagina <span id='ricerca'>" + pagina + "</span>";
             break;
         default:
             Ricerca();
@@ -385,8 +398,11 @@ function CambiaImmagineOnHover(cardElement, thumbBase) {
 }
 //Funzione per cambiare l'immagine della card quando il mouse esce dalla card
 function setImmagineDefault(card, thumb, titolo) {
-    clearInterval(hoverInterval);
     card.querySelector('img').src = thumb;
     card.querySelector('h2').textContent = titolo;
     card.querySelector('p').classList.remove("visually-hidden");
+}
+
+function cambiaPagina() {
+    indicePagina.textContent = pagina;
 }

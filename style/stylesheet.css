@@ -10,12 +10,17 @@
   font-display: swap;
 }
 
-nav.navbar{
+nav.navbar {
   background-color: rgba(24, 24, 24, 0.968) !important;
 }
 
 #ricerca {
   color: rgb(241, 123, 54);
+}
+
+#pagina {
+  color: rgb(241, 123, 54);
+  font-size: large;
 }
 
 span#ricerca {
@@ -198,12 +203,19 @@ p {
 }
 
 .btn#next {
-  width: 12%;
+  width: 8%;
+  margin-left: 3%;
 }
 
 .btn#previous {
-  width: 12%;
-  margin-right: 5%;
+  width: 8%;
+  margin-right: 3%;
+}
+
+span#pagina {
+  width: 5%;
+  height: 5%;
+  background-color: transparent !important;
 }
 
 .pagination {
@@ -270,7 +282,6 @@ p {
 
   .btn#previous {
     width: 15%;
-    margin-right: 5%;
   }
 
   .pagination {
@@ -307,16 +318,15 @@ p {
   }
 }
 
-@media screen and (max-width: 725px) {
-  #n-views {
-    font-size: 70%;
-  }
-
-  #time {
-    font-size: 70%;
-    margin-right: 5%;
-  }
+#n-views {
+  font-size: 70%;
 }
+
+#time {
+  font-size: 70%;
+  margin-right: 5%;
+}
+
 @media screen and (max-width: 575px) {
   .card-description h2 {
     font-size: 100%;
@@ -348,7 +358,6 @@ p {
 
   .btn#previous {
     width: 20%;
-    margin-right: 5%;
   }
   img#icone {
     width: 7%;
