@@ -1,7 +1,7 @@
 
 var tipoRicerca = 2;
 var pagina = 1;
-var api_url_getall = "https://www.eporner.com/api/v2/video/search/?order=latest&lq=1&format=json&gay=0&per_page=39";
+var api_url_getall = "https://www.eporner.com/api/v2/video/search/?order=latest&lq=1&format=json&gay=0&per_pag";
 const btn = document.getElementById('cerca');
 const btnNext = document.getElementById("next");
 const btnPrev = document.getElementById('previous');
@@ -81,7 +81,7 @@ function Ricerca() {
             let categoria = document.getElementById("categoria").value;
             intestazione.innerHTML = "";
             console.log(categoria);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=39&query=" + categoria, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=3&query=" + categoria, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -98,7 +98,7 @@ function Ricerca() {
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
             console.log(key_word);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=39&query=" + key_word, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=3&query=" + key_word, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -120,7 +120,7 @@ function Ricerca() {
             }
 
             console.log(time);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json&per_page=39", {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json&per_page=3", {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -137,7 +137,7 @@ function Ricerca() {
             let sezione = document.getElementById("sezione").value;
             console.log(sezione);
             if (sezione == "etero") {
-                fetch("https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=39&page=" + pagina, {
+                fetch("https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=36&page=" + pagina, {
                     "method": "GET",
                     "headers": {
                         "Accept": "application/json",
@@ -148,7 +148,7 @@ function Ricerca() {
                     .catch(error => console.log('Error:', error));
 
             } else {
-                fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=39&format=json&lq=1&query=" + sezione, {
+                fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=36&format=json&lq=1&query=" + sezione, {
                     "method": "GET",
                     "headers": {
                         "Accept": "application/json",
@@ -262,7 +262,7 @@ function CreaHome() {
     cambiaPagina();
     console.log("Crea Home");
     tipoRicerca = 5;
-    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=42", {
+    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page", {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
@@ -282,7 +282,7 @@ function CreaTrending() {
     }
     console.log("Crea Trending");
     tipoRicerca = 6;
-    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=39", {
+    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page", {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
