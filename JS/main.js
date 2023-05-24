@@ -80,6 +80,7 @@ function Ricerca() {
     cambiaPagina();
     switch (tipoRicerca) {
         case 1:
+            tipoRicerca = 1;
             console.log("Ricerca per categoria");
             let categoria = document.getElementById("categoria").value;
             intestazione.innerHTML = "";
@@ -91,7 +92,7 @@ function Ricerca() {
                 }
             })
                 .then(response => response.json())
-                .then(result => { stampaCards(result) })
+                .then(result => { stampaCards(result)})
                 .catch(error => console.log('Error:', error));
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             break;
