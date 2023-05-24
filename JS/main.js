@@ -78,6 +78,13 @@ function Ricerca() {
     loading = false;
     load();
     cambiaPagina();
+    if (pagina == 1) {
+        intestazione.innerHTML = "Ultime uscite";
+        btnPrev.className = "btn btn-outline-warning disabled";
+    } else {
+        btnPrev.className = "btn btn-outline-warning";
+        btnNext.className = "btn btn-outline-warning";
+    }
     switch (tipoRicerca) {
         case 1:
             tipoRicerca = 1;
@@ -92,7 +99,7 @@ function Ricerca() {
                 }
             })
                 .then(response => response.json())
-                .then(result => { stampaCards(result)})
+                .then(result => { stampaCards(result) })
                 .catch(error => console.log('Error:', error));
             intestazione.innerHTML = `Pagina <span id="categoria">${pagina}</span>`;
             break;
@@ -170,7 +177,7 @@ function Ricerca() {
 }
 // funzione che mi stampa le cards
 function stampaCards(result) {
-    
+
     console.log(result);
     let arrayVideo = result.videos;
     let cardsVideo = document.getElementById('video');
@@ -197,21 +204,23 @@ function stampaCards(result) {
         const cardImg = document.createElement(`img`);
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
-        
+
         card.onmouseover = function () {
             clearInterval(hoverInterval);
             CambiaImmagineOnHover(this, arrayVideo[index].thumbs[0].src)
         };
         card.onmouseleave = function () {
-            clearInterval(hoverInterval); 
-            setImmagineDefault(this, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
+            clearInterval(hoverInterval);
+            setImmagineDefault(this, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65))
+        };
         card.ontouchstart = function () {
             clearInterval(hoverInterval)
             CambiaImmagineOnHover(this, arrayVideo[index].thumbs[0].src)
         };
         card.ontouchend = function () {
             clearInterval(hoverInterval);
-            setImmagineDefault(this, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65)) };
+            setImmagineDefault(this, video.default_thumb.src, stampaTitolo(arrayVideo[index].title, 65))
+        };
 
         const cardDescription = document.createElement(`div`);
         cardDescription.className = `card-description`;
@@ -269,6 +278,10 @@ function CreaHome() {
     load();
     if (pagina == 1) {
         intestazione.innerHTML = "Ultime uscite";
+        btnPrev.className = "btn btn-outline-warning disabled";
+    } else {
+        btnPrev.className = "btn btn-outline-warning";
+        btnNext.className = "btn btn-outline-warning";
     }
     cambiaPagina();
     console.log("Crea Home");
@@ -291,7 +304,11 @@ function CreaTrending() {
     window.scrollTo(top);
     cambiaPagina();
     if (pagina == 1) {
-        intestazione.innerHTML = `<span><img src="./img/campfire.png" alt="" id="icone"></span>Trending<span><img src="./img/campfire.png" alt="" id="icone"></span>`;
+        intestazione.innerHTML = "Ultime uscite";
+        btnPrev.className = "btn btn-outline-warning disabled";
+    } else {
+        btnPrev.className = "btn btn-outline-warning";
+        btnNext.className = "btn btn-outline-warning";
     }
     console.log("Crea Trending");
     tipoRicerca = 6;
@@ -340,7 +357,7 @@ function prev() {
         pagina--;
     } else {
         pagina = 1;
-       
+
     }
     switch (tipoRicerca) {
         case 5:
@@ -425,7 +442,7 @@ function load() {
     if (loading == true) {
         Divloading.className = "container-fluid visually-hidden";
         gridVideo.className = "container-fluid";
-    }else{
+    } else {
         Divloading.className = "container-fluid";
         gridVideo.className = "container-fluid visually-hidden";
     }
