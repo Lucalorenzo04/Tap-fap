@@ -304,7 +304,8 @@ function CreaTrending() {
     window.scrollTo(top);
     cambiaPagina();
     if (pagina == 1) {
-        intestazione.innerHTML = "Ultime uscite";
+        intestazione.innerHTML = ` <h1 id="intestazione"><span><img src="./img/campfire.png" alt="" id="icone"></span>Trending<span><img
+        src="./img/campfire.png" alt="" id="icone"></span></h1>`;
         btnPrev.className = "btn btn-outline-warning disabled";
     } else {
         btnPrev.className = "btn btn-outline-warning";
