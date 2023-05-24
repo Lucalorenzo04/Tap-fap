@@ -93,8 +93,9 @@ nav#pagination {
 
 .spinner-border{
   color: rgb(255, 119, 0)!important;
-  width: 5rem;
-  height: 5rem;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 50%;
 }
 
 nav#pagination a {
