@@ -166,11 +166,10 @@ function Ricerca() {
             document.getElementById("ricerca").value = "";
             break;
     }
-    loading = true;
-    load();
 }
 // funzione che mi stampa le cards
 function stampaCards(result) {
+    
     console.log(result);
     let arrayVideo = result.videos;
     let cardsVideo = document.getElementById('video');
@@ -258,7 +257,8 @@ function stampaCards(result) {
 
         cardDescription.append(p);
     });
-    
+    loading = true;
+    load();
 }
 // funzione che mi crea la homepage quando carica la pagina index
 function CreaHome() {
@@ -281,8 +281,6 @@ function CreaHome() {
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
     cambiaPagina();
-    loading = true;
-    load();
 }
 // funzione che mi crea la pagina trending quando carica la pagina trending
 function CreaTrending() {
@@ -304,9 +302,6 @@ function CreaTrending() {
         .then(response => response.json())
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
-        loading = true;
-        load();
-
 }
 //funzione che mi stampa il titolo del video limitando i caratteri
 function stampaTitolo(testo, numeroParole) {
