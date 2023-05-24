@@ -196,6 +196,7 @@ function stampaCards(result) {
         const cardImg = document.createElement(`img`);
         cardImg.src = video.default_thumb.src;
         cardImg.className = `card-img-top`;
+        
         card.onmouseover = function () {
             clearInterval(hoverInterval);
             CambiaImmagineOnHover(this, arrayVideo[index].thumbs[0].src)

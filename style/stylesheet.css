@@ -410,3 +410,24 @@ span#pagina {
 html {
   scroll-behavior: smooth;
 }
+
+  /* Firefox */
+  * {
+    scrollbar-width: none;
+    scrollbar-color: #353535 transparent;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 16px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #353535;
+    border-radius: 0px;
+    border: 5px solid transparent;
+  }
