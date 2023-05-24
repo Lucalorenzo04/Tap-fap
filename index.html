@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -102,8 +103,16 @@
     </div>
   </nav>
   <h1 id="intestazione">Ultime uscite</h1>
-  <div class="container-fluid" id="graficaCards" ;>
+
+  <div class="container-fluid" id="loading">
+    <div class="spinner-border text-warning" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </div>
+
+  <div class="container-fluid visually-hidden" id="graficaCards">
     <div class="row row-cols-1 row-cols-sm-3 g-5" id="video">
+
     </div>
   </div>
   <br>
@@ -112,21 +121,21 @@
 <footer>
   <nav aria-label="Page navigation fixed-bottom" id="pagination" data-bs-theme="dark">
     <ul class="pagination">
-        <button type="button" class="btn btn-outline-warning outline-warning" id="previous" >&laquo;</button>
-        <li class="page-item">Pagina <span id="pagina">1</span></li>
-        <button type="button" class="btn btn-outline-warning" id="next">&raquo;</button>
+      <button type="button" class="btn btn-outline-warning outline-warning" id="previous">&laquo;</button>
+      <li class="page-item">Pagina <span id="pagina">1</span></li>
+      <button type="button" class="btn btn-outline-warning" id="next">&raquo;</button>
     </ul>
   </nav>
   <br>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
-  <script src="./JS/main.js"></script>
-  <script>
+  integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+  </script>
+<script src="./JS/main.js"></script>
+<script>
   window.onload = CreaHome()</script>
-  <script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/insights/script.js"></script>
 
 
 </html>

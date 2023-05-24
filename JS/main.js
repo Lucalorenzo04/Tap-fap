@@ -12,6 +12,7 @@ const selectSezione = document.getElementById('sezione');
 let intestazione = document.getElementById("intestazione");
 let indicePagina = document.getElementById("pagina");
 var hoverInterval;
+var loading = false;
 if (btn) {
     btn.addEventListener("click", Ricerca);
 }
@@ -74,6 +75,8 @@ function SwitchInputSelect(num) {
 }
 // funzione che mi fa la ricerca in base al filtro selezionato
 function Ricerca() {
+    loading = false;
+    load();
     cambiaPagina();
     switch (tipoRicerca) {
         case 1:
@@ -81,7 +84,7 @@ function Ricerca() {
             let categoria = document.getElementById("categoria").value;
             intestazione.innerHTML = "";
             console.log(categoria);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=36&query=" + categoria, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=30&query=" + categoria, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -98,7 +101,7 @@ function Ricerca() {
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
             console.log(key_word);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=36&query=" + key_word, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=30&query=" + key_word, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -120,7 +123,7 @@ function Ricerca() {
             }
 
             console.log(time);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json&per_page=36", {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=" + time + "&lq=0&format=json&per_page=30", {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
@@ -137,7 +140,7 @@ function Ricerca() {
             let sezione = document.getElementById("sezione").value;
             console.log(sezione);
             if (sezione == "etero") {
-                fetch("https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=36&page=" + pagina, {
+                fetch("https://www.eporner.com/api/v2/video/search/?order=latest&lq=0&format=json&gay=0&per_page=30&page=" + pagina, {
                     "method": "GET",
                     "headers": {
                         "Accept": "application/json",
@@ -148,7 +151,7 @@ function Ricerca() {
                     .catch(error => console.log('Error:', error));
 
             } else {
-                fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=36&format=json&lq=1&query=" + sezione, {
+                fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=30&format=json&lq=1&query=" + sezione, {
                     "method": "GET",
                     "headers": {
                         "Accept": "application/json",
@@ -163,6 +166,8 @@ function Ricerca() {
             document.getElementById("ricerca").value = "";
             break;
     }
+    loading = true;
+    load();
 }
 // funzione che mi stampa le cards
 function stampaCards(result) {
@@ -253,16 +258,20 @@ function stampaCards(result) {
 
         cardDescription.append(p);
     });
+    
 }
 // funzione che mi crea la homepage quando carica la pagina index
 function CreaHome() {
+    window.scrollTo(top);
+    loading = false;
+    load();
     if (pagina == 1) {
         intestazione.innerHTML = "Ultime uscite";
     }
     cambiaPagina();
     console.log("Crea Home");
     tipoRicerca = 5;
-    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=36", {
+    fetch("https://www.eporner.com/api/v2/video/search/?format=json&lq=0&page=" + pagina + "&per_page=30", {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
@@ -272,17 +281,21 @@ function CreaHome() {
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
     cambiaPagina();
-    window.scrollTo(top);
+    loading = true;
+    load();
 }
 // funzione che mi crea la pagina trending quando carica la pagina trending
 function CreaTrending() {
+    loading = false;
+    load();
+    window.scrollTo(top);
     cambiaPagina();
     if (pagina == 1) {
         intestazione.innerHTML = `<span><img src="./img/campfire.png" alt="" id="icone"></span>Trending<span><img src="./img/campfire.png" alt="" id="icone"></span>`;
     }
     console.log("Crea Trending");
     tipoRicerca = 6;
-    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=36", {
+    fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&order=top-weekly&lq=0&format=json&per_page=30", {
         "method": "GET",
         "headers": {
             "Accept": "application/json"
@@ -291,6 +304,8 @@ function CreaTrending() {
         .then(response => response.json())
         .then(result => { stampaCards(result) })
         .catch(error => console.log('Error:', error));
+        loading = true;
+        load();
 
 }
 //funzione che mi stampa il titolo del video limitando i caratteri
@@ -405,4 +420,16 @@ function setImmagineDefault(card, thumb, titolo) {
 
 function cambiaPagina() {
     indicePagina.textContent = pagina;
+}
+
+function load() {
+    let gridVideo = document.getElementById('graficaCards');
+    let Divloading = document.getElementById("loading");
+    if (loading == true) {
+        Divloading.className = "container-fluid visually-hidden";
+        gridVideo.className = "container-fluid";
+    }else{
+        Divloading.className = "container-fluid";
+        gridVideo.className = "container-fluid visually-hidden";
+    }
 }
