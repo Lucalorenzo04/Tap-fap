@@ -158,6 +158,16 @@ function Ricerca() {
                     .then(result => { stampaCards(result) })
                     .catch(error => console.log('Error:', error));
 
+            } else if (sezione == "gay") {
+                fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=30&format=json&lq=1&gay=2", {
+                    "method": "GET",
+                    "headers": {
+                        "Accept": "application/json",
+                    }
+                })
+                    .then(response => response.json())
+                    .then(result => { stampaCards(result) })
+                    .catch(error => console.log('Error:', error));
             } else {
                 fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=30&format=json&lq=1&query=" + sezione, {
                     "method": "GET",
