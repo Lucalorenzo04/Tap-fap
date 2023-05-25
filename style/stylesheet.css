@@ -414,7 +414,7 @@ html {
 
   /* Firefox */
   * {
-    scrollbar-width: none;
+    scrollbar-width: 16px;
     scrollbar-color: #424242;
   }
 
