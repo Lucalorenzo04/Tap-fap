@@ -415,7 +415,7 @@ html {
   /* Firefox */
   * {
     scrollbar-width: none;
-    scrollbar-color: #606060 transparent;
+    scrollbar-color: #424242;
   }
 
   /* Chrome, Edge, and Safari */
