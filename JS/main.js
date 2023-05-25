@@ -279,13 +279,17 @@ function stampaCards(result) {
         cardDescription.append(p);
     });
     loading = true;
-    load();
+    setTimeout(function () {
+        load();
+    }, 500);
 }
 // funzione che mi crea la homepage quando carica la pagina index
 function CreaHome() {
     window.scrollTo(top);
     loading = false;
-    load();
+    setTimeout(function () {
+        load();
+    }, 500);
     if (pagina == 1) {
         intestazione.innerHTML = "Ultime uscite";
         btnPrev.className = "btn btn-outline-warning disabled";
@@ -310,7 +314,12 @@ function CreaHome() {
 // funzione che mi crea la pagina trending quando carica la pagina trending
 function CreaTrending() {
     loading = false;
-    load();
+
+    // Simulate a code delay
+    setTimeout(function () {
+        load();
+    }, 500);
+
     window.scrollTo(top);
     cambiaPagina();
     if (pagina == 1) {
