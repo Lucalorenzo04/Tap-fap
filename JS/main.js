@@ -281,15 +281,13 @@ function stampaCards(result) {
     loading = true;
     setTimeout(function () {
         load();
-    }, 500);
+    }, 800);
 }
 // funzione che mi crea la homepage quando carica la pagina index
 function CreaHome() {
     window.scrollTo(top);
     loading = false;
-    setTimeout(function () {
-        load();
-    }, 500);
+    load();
     if (pagina == 1) {
         intestazione.innerHTML = "Ultime uscite";
         btnPrev.className = "btn btn-outline-warning disabled";
@@ -314,12 +312,7 @@ function CreaHome() {
 // funzione che mi crea la pagina trending quando carica la pagina trending
 function CreaTrending() {
     loading = false;
-
-    // Simulate a code delay
-    setTimeout(function () {
-        load();
-    }, 500);
-
+    load();
     window.scrollTo(top);
     cambiaPagina();
     if (pagina == 1) {
@@ -443,7 +436,7 @@ function CambiaImmagineOnHover(cardElement, thumbBase) {
             i++;
             prec++;
         }
-    }, 400);
+    }, 500);
 }
 //Funzione per cambiare l'immagine della card quando il mouse esce dalla card
 function setImmagineDefault(card, thumb, titolo) {
