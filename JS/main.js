@@ -45,8 +45,6 @@ function SwitchInputSelect(num) {
             selectSezione.className = "form-select visually-hidden";
             search.placeholder = "Cerca";
             selectDurata.className = "form-select visually-hidden";
-
-
             break;
 
         case 3:
@@ -60,8 +58,9 @@ function SwitchInputSelect(num) {
             break;
         case 4:
             //Filtro Sezione
-            tipoRicerca = 4;
             pagina = 1
+            tipoRicerca = 4;
+            
             selectSezione.className = "form-select";
             search.className = "form-control me-2 visually-hidden";
             selectCategoria.className = "form-select visually-hidden";
@@ -159,6 +158,7 @@ function Ricerca() {
                     .catch(error => console.log('Error:', error));
 
             } else if (sezione == "gay") {
+    
                 fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=30&format=json&lq=1&gay=2", {
                     "method": "GET",
                     "headers": {
@@ -184,6 +184,7 @@ function Ricerca() {
             document.getElementById("ricerca").value = "";
             break;
     }
+    pagina=1;
 }
 // funzione che mi stampa le cards
 function stampaCards(result) {
