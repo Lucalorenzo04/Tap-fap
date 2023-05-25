@@ -13,6 +13,11 @@ let intestazione = document.getElementById("intestazione");
 let indicePagina = document.getElementById("pagina");
 var hoverInterval;
 var loading = false;
+
+selectCategoria.addEventListener("change", resetPagina);
+selectDurata.addEventListener("change", resetPagina);
+selectSezione.addEventListener("change", resetPagina);
+
 if (btn) {
     btn.addEventListener("click", Ricerca);
 }
@@ -459,4 +464,8 @@ function load() {
         Divloading.className = "container-fluid";
         gridVideo.className = "container-fluid visually-hidden";
     }
+}
+
+function resetPagina(){
+    pagina = 1;
 }
