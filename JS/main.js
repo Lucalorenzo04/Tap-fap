@@ -184,7 +184,6 @@ function Ricerca() {
             document.getElementById("ricerca").value = "";
             break;
     }
-    pagina=1;
 }
 // funzione che mi stampa le cards
 function stampaCards(result) {
