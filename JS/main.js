@@ -441,7 +441,7 @@ function CambiaImmagineOnHover(cardElement, thumbBase) {
             i++;
             prec++;
         }
-    }, 500);
+    }, 350);
 }
 //Funzione per cambiare l'immagine della card quando il mouse esce dalla card
 function setImmagineDefault(card, thumb, titolo) {
