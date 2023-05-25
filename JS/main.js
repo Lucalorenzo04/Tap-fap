@@ -13,6 +13,11 @@ let intestazione = document.getElementById("intestazione");
 let indicePagina = document.getElementById("pagina");
 var hoverInterval;
 var loading = false;
+
+selectCategoria.addEventListener("change", resetPagina);
+selectDurata.addEventListener("change", resetPagina);
+selectSezione.addEventListener("change", resetPagina);
+
 if (btn) {
     btn.addEventListener("click", Ricerca);
 }
@@ -45,8 +50,6 @@ function SwitchInputSelect(num) {
             selectSezione.className = "form-select visually-hidden";
             search.placeholder = "Cerca";
             selectDurata.className = "form-select visually-hidden";
-
-
             break;
 
         case 3:
@@ -60,8 +63,9 @@ function SwitchInputSelect(num) {
             break;
         case 4:
             //Filtro Sezione
-            tipoRicerca = 4;
             pagina = 1
+            tipoRicerca = 4;
+            
             selectSezione.className = "form-select";
             search.className = "form-control me-2 visually-hidden";
             selectCategoria.className = "form-select visually-hidden";
@@ -159,6 +163,7 @@ function Ricerca() {
                     .catch(error => console.log('Error:', error));
 
             } else if (sezione == "gay") {
+    
                 fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&per_page=30&format=json&lq=1&gay=2", {
                     "method": "GET",
                     "headers": {
@@ -279,7 +284,9 @@ function stampaCards(result) {
         cardDescription.append(p);
     });
     loading = true;
-    load();
+    setTimeout(function () {
+        load();
+    }, 800);
 }
 // funzione che mi crea la homepage quando carica la pagina index
 function CreaHome() {
@@ -434,7 +441,7 @@ function CambiaImmagineOnHover(cardElement, thumbBase) {
             i++;
             prec++;
         }
-    }, 400);
+    }, 350);
 }
 //Funzione per cambiare l'immagine della card quando il mouse esce dalla card
 function setImmagineDefault(card, thumb, titolo) {
@@ -457,4 +464,8 @@ function load() {
         Divloading.className = "container-fluid";
         gridVideo.className = "container-fluid visually-hidden";
     }
+}
+
+function resetPagina(){
+    pagina = 1;
 }

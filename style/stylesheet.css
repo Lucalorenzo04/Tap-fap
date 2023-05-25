@@ -88,14 +88,14 @@ nav#pagination {
 #loading{
   display: flex;
   justify-content: center;
-  margin-top: 3%;
+  margin-top: 4%;
 }
 
 .spinner-border{
   color: rgb(255, 119, 0)!important;
   width: 3rem;
   height: 3rem;
-  margin-bottom: 50%;
+  margin-bottom: 70%;
 }
 
 nav#pagination a {
@@ -414,8 +414,7 @@ html {
 
   /* Firefox */
   * {
-    scrollbar-width: none;
-    scrollbar-color: #353535 transparent;
+    scrollbar-color: #424242;
   }
 
   /* Chrome, Edge, and Safari */
