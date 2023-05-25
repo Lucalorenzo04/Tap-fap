@@ -92,7 +92,7 @@ function Ricerca() {
             let categoria = document.getElementById("categoria").value;
             intestazione.innerHTML = "";
             console.log(categoria);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&per_page=30&query=" + categoria, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=1&format=json&per_page=30&query=" + categoria, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
