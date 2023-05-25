@@ -113,7 +113,7 @@ function Ricerca() {
             console.log("Ricerca per Parola Chiave");
             let key_word = document.getElementById("ricerca").value;
             console.log(key_word);
-            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=1&format=json&order=latest&per_page=30&query=" + key_word, {
+            fetch("https://www.eporner.com/api/v2/video/search/?page=" + pagina + "&lq=0&format=json&order=latest&per_page=30&query=" + key_word, {
                 "method": "GET",
                 "headers": {
                     "Accept": "application/json"
