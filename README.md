@@ -9,7 +9,7 @@ Tutti i video sono hostati sul player di Eporner che ci permette di visualizzare
 * Ricerca per vari filtri (Categoria, Sezione, Durata e Parola chiave(default))
 * Scorrimento pagine (Max 100 pagine)
 * Preview se si tiene il cursore sopra l'immagine del video o da smartphone quando si ha il dito sull'immagine.
-* Ogni pagina ha 36 video
+* Ogni pagina ha 30 video
 * La pagina trending si aggiorna settimanalmente con i video migliori
 * Il sito si adatta in base al dispositivo e allo schermo
 
