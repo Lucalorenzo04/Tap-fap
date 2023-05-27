@@ -10,6 +10,10 @@
   font-display: swap;
 }
 
+img.card-img-top {
+ border-radius: 0%
+};
+
 nav.navbar {
   background-color: rgba(24, 24, 24, 0.968) !important;
 }
@@ -131,6 +135,7 @@ select {
   text-shadow: 0 0 2px #000000;
   align-items: center;
   border:none;
+  border-radius: 0%;
 }
 
 p {
