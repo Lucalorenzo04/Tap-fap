@@ -14,9 +14,6 @@ img.card-img-top {
  border-radius: 0%
 };
 
-nav.navbar {
-  background-color: rgba(24, 24, 24, 0.968) !important;
-}
 
 #ricerca {
   color: orange;
@@ -58,6 +55,11 @@ option {
 
 #categoria {
   color: orange;
+}
+
+.navbar {
+  background-color: #161616f5!important;
+
 }
 
 #titolo {
@@ -353,8 +355,6 @@ span#pagina {
     margin-right: 3%;
   }
 }
-
-
 
 
 @media screen and (max-width: 575px) {
