@@ -14,17 +14,16 @@ img.card-img-top {
  border-radius: 0%
 };
 
-
-#ricerca {
-  color: orange;
-}
-
 #pagina {
   color: rgb(241, 123, 54);
   font-size: large;
 }
 
 span#ricerca {
+  color: orange;
+}
+
+#ricerca {
   color: orange;
 }
 
