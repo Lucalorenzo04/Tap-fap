@@ -449,11 +449,11 @@ function setImmagineDefault(card, thumb, titolo) {
     card.querySelector('h2').textContent = titolo;
     card.querySelector('p').classList.remove("visually-hidden");
 }
-
+//Funzione per cambiare il numero della pagina
 function cambiaPagina() {
     indicePagina.textContent = pagina;
 }
-
+// Funzione per far apparire il loading
 function load() {
     let gridVideo = document.getElementById('graficaCards');
     let Divloading = document.getElementById("loading");
@@ -465,7 +465,7 @@ function load() {
         gridVideo.className = "container-fluid visually-hidden";
     }
 }
-
+// Funzione per resettare la pagina
 function resetPagina(){
     pagina = 1;
 }
