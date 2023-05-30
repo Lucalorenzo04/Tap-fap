@@ -15,7 +15,6 @@ img.card-img-top {
 };
 
 #pagina {
-  color: rgb(241, 123, 54);
   font-size: large;
 }
 
@@ -52,7 +51,7 @@ option {
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
 }
 
-#categoria {
+#categoria, #pagina{
   color: orange;
 }
 
