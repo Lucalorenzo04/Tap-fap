@@ -18,11 +18,7 @@ img.card-img-top {
   font-size: large;
 }
 
-span#ricerca {
-  color: orange;
-}
-
-#ricerca {
+span#ricerca,#ricerca,#logo, #categoria, #pagina  {
   color: orange;
 }
 
@@ -35,10 +31,6 @@ body {
   padding: 0;
 }
 
-#logo {
-  color: orange;
-}
-
 .dropdown-item:hover {
   cursor: pointer;
   color: white;
@@ -49,10 +41,6 @@ option {
   color: white;
   background-color: rgb(41, 48, 54);
   border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-}
-
-#categoria, #pagina{
-  color: orange;
 }
 
 .navbar {
